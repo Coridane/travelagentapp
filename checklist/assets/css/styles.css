@@ -5,8 +5,7 @@
 header {
   position: sticky;
   background-color: white;
-  top: 0;
-  width: 100%;
+  top: 0;  
   text-align: center;
 }
 
@@ -15,7 +14,7 @@ body {
 }
 
 .bookmark {
-  scroll-margin-top: 12em;
+  scroll-margin-top: 15em;
 }
 
 .collapsible {
