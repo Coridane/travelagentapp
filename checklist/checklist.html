@@ -124,30 +124,22 @@
             <ul>
                 <li>A commit is committing the changes to a local repo.</li>
                 <li>A push is pushing that commit up to a remote repo (Git Hub).</li>
-            </ul>                
-            <!-- When you go into a folder and create a file, the branch that you're on doesn't matter. It doesn't care. However, when you commit the file, the branch that you're on does matter.
-            <br><br> -->
-            I'm just going to label these Blue and Green for easier reading.
-            <br><br>
-            <font size="5px" color="blue"><b>Blue Approach</b></font>
-            <br><br>
-            <font color="blue">I could commit everything to my local branch called main, and then specify that I want to <b>git push origin daniel</b>.
+            </ul>
+            I could commit everything to my local branch called main, and then specify that I want to <b>git push origin daniel</b>.
             <br><br>
             Later, when I'm all done, I can specify that I want to <b>git push origin develop</b>.
             <br><br>
-            There is that approach, but the danger of doing everything from the main local branch is that if I forget and just type <b>git push</b>, it will push to main!</font>
+            <b>This is not a good practice</b> because if I forget and just type <b>git push</b>, it will push to main.
             <br><br>
-            <font size="5px" color="green"><b>Green Approach</b></font>
+            A better practice is to work in a local branch that mirrors the remote branch (in my case, daniel). Then it's clear and you won't make that mistake.
             <br><br>
-            <font color="green">Another approach is to work in a local branch called (in my case) daniel, so that it's clear and I don't make that mistake.
+            Technically, you can't make that mistake because if you just type <b>git push</b>, it won't work and it yells at since there's not a default destination for your first name branch.
             <br><br>
-            Technically, I can't make that mistake because if I just type <b>git push</b>, it will yell at me because I didn't set a default for my daniel branch.
-            <br><br>
-            Sidebar: That was just to make a point. I actually did set a default to make it easier (I went into my daniel branch and did: <b>git push --set-upstream origin daniel</b>), so I can just type <b>git push</b>.
+            Sidebar: I actually did set a default to make it easier (I went into my daniel branch and did: <b>git push --set-upstream origin daniel</b>), so I can just type <b>git push</b>.
             <br><br>                                
             When I'm all done and ready to push to the branch called develop, I don't want to create a develop branch although I could. I'll just do a <b>git push origin develop</b>.</font>
             <br><br>
-            <mark>It's really up to you. What is your preference? You might have a better approach. Please reach out and share your thoughts if you have some on this topic.</mark></p>
+            Please reach out if you have some thoughts on this topic.</p>
         </div>
 
     <script src="./assets/js/script.js"></script>
