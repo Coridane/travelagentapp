@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traveling Website</title>
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
     <title>Travel Agent App</title>
 
 </head>
 
-<title>Travi</title>
+<title>Traveler Agent App</title>
 
 </head>
 
@@ -18,35 +21,40 @@
 
 <header>
 
-    <h1>Welcome Travi</h1>
+    <h1>Welcome Traveler</h1>
     <img src="./travel_agent_logo_black.png" alt="black and white travel logo" />
 
 </header>
 
+<hr>
+
 <main>
 
-    <form id= "search">
-        <input type ="text" id="input" placeholder="enter city" class="form-label">
-        <button type= "submit" class ="">Search</button>
-        <div id = "checkboxes">
-            <input type="checkbox" id="hotelCheck"> Hotels
-            <input type="checkbox" id="restaurantCheck"> Restaurants
-            <input type="checkbox" id="attractionCheck"> Attractions
-        </div>
-    </form>
+    <br><br>
 
-    <p>
+    <form id = "search">
+        <input type ="text" id="input" placeholder="Enter a city" class="form-label">
+        <button type= "submit" class ="">Search</button>
+    </form>
+        <div id = "checkboxes">
+            <input type="checkbox" id="hotelCheck" checked="checked"> Hotels
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="checkbox" id="restaurantCheck" checked="checked"> Restaurants
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="checkbox" id="attractionCheck" checked="checked"> Attractions
+            &nbsp&nbsp&nbsp&nbsp&nbsp
+        </div>    
+
+    <br><br>
 
     <div class="wrapper">
-    <section id="hotel">Hotels</section>    
-    <section id="restaurant">Restaurants</section>    
-    <section id="attraction">Attractions</section>
+    <section id="hotel"><img src="./assets/hotels.png"></section>    
+    <section id="restaurant"><img src="./assets/restaurants.png"></section>    
+    <section id="attraction"><img src="./assets/attractions.png"></section>
     </div>
-    
-    </p>
 
     <p>
-    <section id="weather">Today's Weather</section>
+    <section id="weather"><img src="./assets/weather.png"></section>
     </p>
 
     <!-- <section>
@@ -57,10 +65,13 @@
 </main>
 
     <footer>
-
-        
-
-        
+        Brought to you by
+        <br>
+        <video id="video" width="400" height="auto" autoplay muted>
+            <source src="./assets/GCPW.mp4" type="video/mp4">
+            <source src="./assets/GCPW.mp4" type="video/ogg">
+          Your browser does not support the video tag.
+        </video>        
     </footer>
     
     <!-- jquery-->

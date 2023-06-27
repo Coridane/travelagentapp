@@ -1,3 +1,7 @@
+* {
+    font-family: 'Maven Pro', sans-serif;
+}
+
 header {
     text-align: center;
 }
@@ -12,42 +16,71 @@ main {
     width: 100%;
 }
 
+form input {
+    height: 30px;
+    width: 600px;
+    font-size: 20px;
+    text-align: center;
+}
+
+main img {
+    height: 90px;
+    width: auto;
+}
+
 .wrapper {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
 }
 
 #restaurant {
     display: inline-flex;    
     height: 400px;
-    width: 250px;
-    background-color: blue;
-    color: white;
-    text-align: center;
+    width: 300px;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: white;    
+    justify-content: center;
 }
 
 #hotel {
     display: inline-flex;    
     height: 400px;
-    width: 250px;
-    background-color: blue;
+    width: 300px;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
     color: white;
-    
+    justify-content: center;    
 }
 
 #attraction {
     display: inline-flex;    
     height: 400px;
-    width: 250px;
-    background-color: blue;
-    color: white;    
+    width: 300px;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: white;
+    justify-content: center;
 }
 
 #weather {
     display: inline-flex;
     height: 200px;
-    width: 1195px;
-    background-color: blue;
+    width: 1250px;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
     color: white;
-    
+    justify-content: center;
+}
+
+footer {
+    text-align: center;
 }
