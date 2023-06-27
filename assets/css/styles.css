@@ -1,0 +1,39 @@
+main {    
+    text-align: center;
+    width: 100%;
+}
+
+#restaurant {
+    display: inline-flex;    
+    height: 400px;
+    width: 200px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+}
+
+#hotel {
+    display: inline-flex;    
+    height: 400px;
+    width: 200px;
+    background-color: blue;
+    color: white;
+    
+}
+
+#attraction {
+    display: inline-flex;    
+    height: 400px;
+    width: 200px;
+    background-color: blue;
+    color: white;    
+}
+
+#weather {
+    display: inline-flex;
+    height: 200px;
+    width: 1000px;
+    background-color: blue;
+    color: white;
+    
+}
