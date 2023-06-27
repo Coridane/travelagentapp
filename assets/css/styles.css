@@ -12,10 +12,15 @@ main {
     width: 100%;
 }
 
+.wrapper {
+    display: flex;
+    justify-content:space-around;
+}
+
 #restaurant {
     display: inline-flex;    
     height: 400px;
-    width: 200px;
+    width: 250px;
     background-color: blue;
     color: white;
     text-align: center;
@@ -24,7 +29,7 @@ main {
 #hotel {
     display: inline-flex;    
     height: 400px;
-    width: 200px;
+    width: 250px;
     background-color: blue;
     color: white;
     
@@ -33,7 +38,7 @@ main {
 #attraction {
     display: inline-flex;    
     height: 400px;
-    width: 200px;
+    width: 250px;
     background-color: blue;
     color: white;    
 }
@@ -41,7 +46,7 @@ main {
 #weather {
     display: inline-flex;
     height: 200px;
-    width: 1000px;
+    width: 1195px;
     background-color: blue;
     color: white;
     
