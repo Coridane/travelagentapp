@@ -1,5 +1,6 @@
 // init variables
 var $search = $('#search');
+var $input = $('#input');
 // html element checkboxes /// need to add the the element ids
 var $hotelCheck = $();
 var $restrauntCheck = $();
