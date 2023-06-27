@@ -454,3 +454,12 @@ function formatDate(date) {
 }
 
 });
+
+// Loop for team logo video
+document.getElementById('video').addEventListener('ended',myHandler,false);
+function myHandler(e) {
+    console.log('ended');
+    setTimeout(function(){
+        document.getElementById('video').play();
+    }, 2000);
+}
