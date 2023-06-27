@@ -9,6 +9,8 @@ var $attractionCheck = $('#attractionCheck');
 var hotelCheck;
 var restrauntCheck;
 var attractionCheck;
+// loaction varible used in js
+var city;
 
 $( function () 
 {
