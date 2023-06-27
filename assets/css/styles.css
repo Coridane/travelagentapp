@@ -23,6 +23,12 @@ form input {
     text-align: center;
 }
 
+form button {
+    height: 35px;
+    width: 80px;
+    padding-top: 5px;    
+}
+
 main img {
     height: 90px;
     width: auto;
@@ -84,3 +90,9 @@ main img {
 footer {
     text-align: center;
 }
+
+@-moz-document url-prefix() {
+    #weather {
+      width: 1345px;
+    }
+  }
