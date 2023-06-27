@@ -21,7 +21,7 @@ $( function ()
         city = $input.val();
         // clear text area and give it a placeholder
         $input.val('');
-        $input.attr('placeholder','enter city');
+        $input.attr('placeholder','Enter a city');
         // get values from checkboxes
         hotelCheck = $hotelCheck.is(":checked");
         restaurantCheck = $restaurantCheck.is(":checked");
@@ -34,3 +34,12 @@ $( function ()
     });
 
 });
+
+// Loop for team logo video
+document.getElementById('video').addEventListener('ended',myHandler,false);
+function myHandler(e) {
+    console.log('ended');
+    setTimeout(function(){
+        document.getElementById('video').play();
+    }, 2000);
+}
