@@ -452,3 +452,5 @@ function formatDate(date) {
   var options = { weekday: 'long', month: 'long', day: 'numeric' };
   return date.toLocaleDateString('en-US', options);
 }
+
+});
