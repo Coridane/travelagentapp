@@ -13,63 +13,60 @@
 
 </head>
 
-<title>Traveler Agent App</title>
-
-</head>
 
 <body>
 
-<header>
+    <header>
 
-    <h1>Welcome Traveler</h1>
-    <img src="./travel_agent_logo_black.png" alt="black and white travel logo" />
+        <h1>Welcome Traveler</h1>
+        <img src="./assets/img/travel_agent_logo_black.png" alt="black and white travel logo" />
 
-</header>
+    </header>
 
-<hr>
+    <hr>
 
-<main>
+    <main>
 
-    <br><br>
+        <br><br>
 
-    <form id = "search">
-        <input type ="text" id="input" placeholder="Enter a city" class="form-label">
-        <button type= "submit" class ="">Search</button>
-    </form>
+        <form id = "search">
+            <input type = "search" id="input" placeholder="Enter a city" class="form-label">
+            <label for = "input">
+                <button type= "submit" class ="">Search</button>
+            </label>
+        </form>
+
         <div id = "checkboxes">
-            <input type="checkbox" id="hotelCheck" checked="checked"> Hotels
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input type="checkbox" id="restaurantCheck" checked="checked"> Restaurants
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input type="checkbox" id="attractionCheck" checked="checked"> Attractions
-            &nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="checkbox" id="hotelCheck" checked="checked"> <label for="hotelCheck">Hotels</label>
+            <input type="checkbox" id="restaurantCheck" checked="checked"> <label for="restaurantCheck">Restaurants</label>
+            <input type="checkbox" id="attractionCheck" checked="checked">  <label for="attractionCheck">Attractions</label> 
         </div>    
 
-    <br><br>
+        <br><br>
 
-    <div class="wrapper">
-    <section id="hotel"><img src="./assets/hotels.png"></section>    
-    <section id="restaurant"><img src="./assets/restaurants.png"></section>    
-    <section id="attraction"><img src="./assets/attractions.png"></section>
-    </div>
+        <div class="wrapper">
+            <section id="hotel"><img src="./assets/img/hotels.png"></section>    
+            <section id="restaurant"><img src="./assets/img/restaurants.png"></section>    
+            <section id="attraction"><img src="./assets/img/attractions.png"></section>
+        </div>
 
-    <p>
-    <section id="weather"><img src="./assets/weather.png"></section>
-    </p>
+        <p>
+            <section id="weather"><img src="./assets/img/weather.png"></section>
+        </p>
 
-    <!-- <section>
-        <h2>Contact</h2>
-        <p></p>
-    </section> -->
+        <!-- <section>
+            <h2>Contact</h2>
+            <p></p>
+        </section> -->
 
-</main>
+    </main>
 
     <footer>
         Brought to you by
         <br>
         <video id="video" width="400" height="auto" autoplay muted>
-            <source src="./assets/GCPW.mp4" type="video/mp4">
-            <source src="./assets/GCPW.mp4" type="video/ogg">
+            <source src="./assets/img/GCPW.mp4" type="video/mp4">
+            <source src="./assets/img/GCPW.mp4" type="video/ogg">
           Your browser does not support the video tag.
         </video>        
     </footer>

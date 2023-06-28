@@ -96,3 +96,13 @@ footer {
       width: 1345px;
     }
   }
+
+#checkboxes
+{
+    text-align: center;
+}
+
+#checkboxes label
+{
+    margin-right: 40px;
+}
