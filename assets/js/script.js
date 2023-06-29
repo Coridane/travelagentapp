@@ -38,6 +38,12 @@ $( function ()
         console.log("attractions check: " + attractionCheck);
         //call display cards
         toggleCards();
+        //checks to see if at least one checkbox is checked 
+        if(hotelCheck == false && restaurantCheck == false && attractionCheck == false){
+            $('#alert').show();
+        }else{
+            $('#alert').hide();
+        }
     });
 
 });
