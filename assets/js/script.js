@@ -15,6 +15,7 @@ var restaurantCheck;
 var attractionCheck;
 // loaction varible used in js
 var city;
+const apiKey = '4fe3b9ab993ff0a3ff4a427e9b40def8';
 
 $( function () 
 {
