@@ -147,6 +147,44 @@ function toggleCards() {
   }
 }
 
+
+function toggleCards()
+{
+    //hotel check
+    if(hotelCheck === true) //show card if checked
+    {
+        $hotel.attr('class', 'display');
+        $hotel.attr('style','display: block;');
+    }
+    else
+    {
+        $hotel.attr('class', 'hidden');
+        $hotel.attr('style','display: none;');
+    }
+    //restaurant
+    if(restaurantCheck === true) //show card if checked
+    {
+        $restaurant.attr('class', 'display');
+        $restaurant.attr('style','display: block;');
+    }
+    else
+    {
+        $restaurant.attr('class', 'hidden');
+        $restaurant.attr('style','display: none;');
+    }
+    //attraction check
+    if(attractionCheck === true) //show card if checked
+    {
+        $attraction.attr('class', 'display');
+        $attraction.attr('style','display: block;');
+    }
+    else
+    {
+        $attraction.attr('class', 'hidden');
+        $attraction.attr('style','display: none;');
+    }
+}
+
 // Loop for team logo video
 document.getElementById('video').addEventListener('ended', myHandler, false);
 function myHandler(e) {
