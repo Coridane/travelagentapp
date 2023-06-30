@@ -17,32 +17,6 @@ var attractionCheck;
 var city;
 const apiKey = '4fe3b9ab993ff0a3ff4a427e9b40def8';
 
-<<<<<<< HEAD
-// weather API key
-const apiKey = '4fe3b9ab993ff0a3ff4a427e9b40def8';
- 
-
-$( function () 
-{
-    $search.submit( function(event)
-    {
-        event.preventDefault();
-        // get city name
-        city = $input.val();
-        // clear text area and give it a placeholder
-        $input.val('');
-        $input.attr('placeholder','Enter a city');
-        // get values from checkboxes
-        hotelCheck = $hotelCheck.is(":checked");
-        restaurantCheck = $restaurantCheck.is(":checked");
-        attractionCheck = $attractionCheck.is(":checked");
-        //check inputs in console
-        console.log("user input: " + city);
-        console.log("hotel check: " + hotelCheck);
-        console.log("restaurant check: " + restaurantCheck);
-        console.log(" attractions check: "+ attractionCheck);
-    });
-=======
 $(function () {
   // Autocomplete for user search input
   var autocompleteService = new google.maps.places.AutocompleteService();
@@ -79,7 +53,6 @@ $(function () {
       $('#alert').hide();
     }
   });
->>>>>>> 8a0ce45005f1ad2ad44a4e3570b7d76387360f7c
 
 });
 

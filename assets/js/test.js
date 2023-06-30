@@ -46,6 +46,8 @@ $(function () {
 });
 
 
+// test change for github workflow
+
 // Autocomplete for user search input
 var autocomplete = new google.maps.places.Autocomplete($input[0]);
 
