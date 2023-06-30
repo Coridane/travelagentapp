@@ -149,16 +149,21 @@ function toggleCards() {
 
 function toggleCards() 
 {
-  // displays card depending on checkbox value
-  $hotel.toggle(hotelCheck);
-  $restaurant.toggle(restaurantCheck);
-  $attraction.toggle(attractionCheck);
-
+    //checks if there is a repeat and send the index at repeat
+    var ind;
+    for(var i = 0; i < saveList.length; i++)
+    {
+        if(saveList[i].city == city)
+        {
+            ind = i;
+            return ind;
+        }         
+    }
+    return false;
 }
 
 function displaySaveList()
 {
-    var $sidebar = $('#mySidebar');
     var $btn = $('<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>');
     //remove everything in side bar
     $sidebar.children().remove();
@@ -175,7 +180,6 @@ function displaySaveList()
         for(i = saveList.length; i-- ; i > 0)
         {
             var city = saveList[i].city;
-            console.log("city in side bar: "+ city);
             var $a= $('<a href="#" class="w3-bar-item w3-button">' + city + '</a>');
             //add to list
             $sidebar.append($a);
