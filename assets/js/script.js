@@ -66,14 +66,17 @@ $(function () {
 
     //store save on button click
     $save.on("click", save);
-    $sidebar.on("click",'.w3-bar-item', searchAgain);
+    $sidebar.on("click",'.save-item', searchAgain);
 
 });
 
 function searchAgain()
 {
+    //gets the city that was pressed
     city =  $(this).text();
     console.log("city pressed: " + city);
+    //save again
+    save();
 }
 
 
@@ -143,7 +146,7 @@ function displaySaveList()
         for(i = saveList.length; i-- ; i > 0)
         {
             var city = saveList[i].city;
-            var $a= $('<a href="#" class="w3-bar-item w3-button">' + city + '</a>');
+            var $a= $('<a href="#" class="save-item w3-bar-item w3-button">' + city + '</a>');
             //add to list
             $sidebar.append($a);
         } 
@@ -167,6 +170,7 @@ function myHandler(e) {
   }, 2000);
 }
 
+//side bar functions-----------------------------
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
 }
@@ -174,3 +178,4 @@ function w3_open() {
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
 }
+//end of sidebar
