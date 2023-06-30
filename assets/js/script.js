@@ -471,33 +471,31 @@ function searchAgain()
 
 function save()
 {
-    console.log("city to be save: " + city);
+    //this function saves the current loaction into the local stroage
     if(city == undefined)
         return;
     //init array
     var saveList = [];
-    //console.log("city in save button " + city);
     //checks if the local storage has stuff and if it does the save List is the storage
     if (localStorage.getItem('saveList') !== null) 
     {
         saveList = JSON.parse(localStorage.getItem("saveList"));
     }
-    if(city !== '' )
+    
+    //create new JSON object
+    var newCity = new saveCity(city);
+    //check if city already exists
+    var replace = checkRepeat(saveList, city);
+    //if there is a repeat remove it from the list from its previous postion
+    if( replace !== false)
     {
-        //create new JSON object
-        var newCity = new saveCity(city);
-        //check if city already exists
-        var replace = checkRepeat(saveList, city);
-        //if there is a repeat remove it from the list from its previous postion
-        if( replace !== false)
-        {
-            saveList.splice(replace, 1);
-        }  
-        //add object to array
-        saveList.push(newCity);
-        //set the storage with the updated array
-        localStorage.setItem("saveList",JSON.stringify(saveList)); 
-    }
+        saveList.splice(replace, 1);
+    }  
+    //add object to array
+    saveList.push(newCity);
+    //set the storage with the updated array
+    localStorage.setItem("saveList",JSON.stringify(saveList)); 
+    //updates the sidebar in html
     displaySaveList();
 
 }
@@ -519,6 +517,7 @@ function checkRepeat(saveList, city)
 
 function displaySaveList()
 {
+    //this function updates the sidebar html
     var $btn = $('<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>');
     //remove everything in side bar
     $sidebar.children().remove();
