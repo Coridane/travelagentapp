@@ -62,7 +62,7 @@ function toggleCards() {
   //displays card depending on checkbox value
   $hotel.toggle(hotelCheck);
   $restaurant.toggle(restaurantCheck);
-  $attraction.toggle(attractionCheck);
+  $attraction.toggle(attractionCheck);  
 }
 
 // Fetch hotels using Google Places API
