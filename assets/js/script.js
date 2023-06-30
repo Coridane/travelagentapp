@@ -167,12 +167,74 @@ function toggleCards()
     }
 }
 
+    //store save on button click
+    $save.on("click",function(event)
+    {
+        //init array
+        var saveList = [];
+        console.log("city in save button " + city);
+        //checks if the local storage has stuff and if it does the save List is the storage
+        if (localStorage.getItem('saveList') !== null) 
+        {
+            saveList = JSON.parse(localStorage.getItem("saveList"));
+        }
+        if(city !== '')
+        {
+            //create new JSON object
+            var newCity = new saveCity(city);
+            //add object to array
+            saveList.push(newCity);
+            console.log("saving this city: " + saveList);
+            //set the storage with the updated array
+            localStorage.setItem("saveList",JSON.stringify(saveList)); 
+        }
+        displaySaveList();
+        
+    })
 
-function toggleCards() {
+
+function toggleCards() 
+{
   // displays card depending on checkbox value
   $hotel.toggle(hotelCheck);
   $restaurant.toggle(restaurantCheck);
   $attraction.toggle(attractionCheck);
+
+}
+
+function displaySaveList()
+{
+    var $sidebar = $('#mySidebar');
+    var $btn = $('<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>');
+    //remove everything in side bar
+    $sidebar.children().remove();
+    //add the close the button
+    $sidebar.append($btn);
+    var saveList = [];
+    //if the save list isn't empty
+    if (localStorage.getItem('saveList') !== null) 
+    {
+        //get saved listinfo
+        saveList = JSON.parse(localStorage.getItem("saveList"));
+        //loop until all the list is displayed as buttons
+        //is in descending order so the latest item is on top
+        for(i = saveList.length; i-- ; i > 0)
+        {
+            var city = saveList[i].city;
+            console.log("city in side bar: "+ city);
+            var $a= $('<a href="#" class="w3-bar-item w3-button">' + city + '</a>');
+            //add to list
+            $sidebar.append($a);
+        } 
+    }
+}
+
+function toggleCards()
+{
+    //displays card depinding on checkbox value
+    $hotel.toggle(hotelCheck);
+    $restaurant.toggle(restaurantCheck);    
+    $attraction.toggle(attractionCheck);
 }
 
 // Loop for team logo video
