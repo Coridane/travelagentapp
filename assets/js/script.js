@@ -455,27 +455,26 @@ function formatDate(date) {
 
 });
 
-function toggleCards()
-{
-    //displays card depinding on checkbox value
-    $hotel.toggle(hotelCheck);
-    $restaurant.toggle(restaurantCheck);    
-    $attraction.toggle(attractionCheck);
+function toggleCards() {
+  // displays card depending on checkbox value
+  $hotel.toggle(hotelCheck);
+  $restaurant.toggle(restaurantCheck);
+  $attraction.toggle(attractionCheck);
 }
 
 // Loop for team logo video
-document.getElementById('video').addEventListener('ended',myHandler,false);
+document.getElementById('video').addEventListener('ended', myHandler, false);
 function myHandler(e) {
-    console.log('ended');
-    setTimeout(function(){
-        document.getElementById('video').play();
-    }, 2000);
+  console.log('ended');
+  setTimeout(function () {
+    document.getElementById('video').play();
+  }, 2000);
 }
 
 function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("mySidebar").style.display = "block";
 }
-  
+
 function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("mySidebar").style.display = "none";
 }
