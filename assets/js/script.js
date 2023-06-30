@@ -168,43 +168,69 @@ function toggleCards()
 }
 
     //store save on button click
-    $save.on("click",function(event)
+    $save.on("click", save);
+    $sidebar.on("click",'.w3-bar-item', searchAgain);
+
+});
+
+function searchAgain()
+{
+    city =  $(this).text();
+    console.log("city pressed: " + city);
+}
+
+
+function save()
+{
+    console.log("city to be save: " + city);
+    if(city == undefined)
+        return;
+    //init array
+    var saveList = [];
+    //console.log("city in save button " + city);
+    //checks if the local storage has stuff and if it does the save List is the storage
+    if (localStorage.getItem('saveList') !== null) 
     {
-        //init array
-        var saveList = [];
-        console.log("city in save button " + city);
-        //checks if the local storage has stuff and if it does the save List is the storage
-        if (localStorage.getItem('saveList') !== null) 
+        saveList = JSON.parse(localStorage.getItem("saveList"));
+    }
+    if(city !== '' )
+    {
+        //create new JSON object
+        var newCity = new saveCity(city);
+        //check if city already exists
+        var replace = checkRepeat(saveList, city);
+        //if there is a repeat remove it from the list from its previous postion
+        if( replace !== false)
         {
-            saveList = JSON.parse(localStorage.getItem("saveList"));
-        }
-        if(city !== '')
-        {
-            //create new JSON object
-            var newCity = new saveCity(city);
-            //add object to array
-            saveList.push(newCity);
-            console.log("saving this city: " + saveList);
-            //set the storage with the updated array
-            localStorage.setItem("saveList",JSON.stringify(saveList)); 
-        }
-        displaySaveList();
-        
-    })
+            saveList.splice(replace, 1);
+        }  
+        //add object to array
+        saveList.push(newCity);
+        //set the storage with the updated array
+        localStorage.setItem("saveList",JSON.stringify(saveList)); 
+    }
+    displaySaveList();
+
+}
 
 
 function toggleCards() 
 {
-  // displays card depending on checkbox value
-  $hotel.toggle(hotelCheck);
-  $restaurant.toggle(restaurantCheck);
-  $attraction.toggle(attractionCheck);
-
+    //checks if there is a repeat and send the index at repeat
+    var ind;
+    for(var i = 0; i < saveList.length; i++)
+    {
+        if(saveList[i].city == city)
+        {
+            ind = i;
+            return ind;
+        }         
+    }
+    return false;
 }
 
 function displaySaveList()
 {
-    var $sidebar = $('#mySidebar');
     var $btn = $('<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>');
     //remove everything in side bar
     $sidebar.children().remove();
@@ -221,7 +247,6 @@ function displaySaveList()
         for(i = saveList.length; i-- ; i > 0)
         {
             var city = saveList[i].city;
-            console.log("city in side bar: "+ city);
             var $a= $('<a href="#" class="w3-bar-item w3-button">' + city + '</a>');
             //add to list
             $sidebar.append($a);
