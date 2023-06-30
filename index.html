@@ -20,9 +20,6 @@
     <header>
         <div class="w3-sidebar w3-bar-block" style="display:none" id="mySidebar">
             <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-            <a href="#" class="w3-bar-item w3-button">Link 1</a>
-            <a href="#" class="w3-bar-item w3-button">Link 2</a>
-            <a href="#" class="w3-bar-item w3-button">Link 3</a>
         </div>
     
         <div class="w3">
@@ -68,6 +65,7 @@
             <section id="weather"><img src="./assets/img/weather.png"></section>
         </p>
 
+        <button type= "button" id ="save">Save City</button>
         <!-- <section>
             <h2>Contact</h2>
             <p></p>
@@ -88,8 +86,8 @@
     <!-- jquery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX2tCr8NK-xMvsuHHaX6loXxUCZ8iKB7E&libraries=places"></script>
-    <script src="./assets/js/test.js"></script> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX2tCr8NK-xMvsuHHaX6loXxUCZ8iKB7E&libraries=places&callback=initMap"></script>
+    <script src="./assets/js/script.js"></script> 
 </body>
 
 </html>
