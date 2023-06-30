@@ -58,6 +58,21 @@ autocomplete.addListener('place_changed', function() {
 });
 
 
+// Autocomplete for user search input
+var autocomplete = new google.maps.places.Autocomplete($input[0]);
+
+// use an eventlistener for 'input event
+autocomplete.addListener('place_changed', function() {
+  var place = autocomplete.getPlace();
+  if (place && place.formatted_address) {
+    city = place.formatted_address;
+  }
+});
+
+
+function initMap() {
+    // Your map initialization code goes here
+  }
 function toggleCards() {
   //displays card depending on checkbox value
   $hotel.toggle(hotelCheck);
