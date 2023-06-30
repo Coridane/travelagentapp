@@ -17,6 +17,7 @@ var attractionCheck;
 var city;
 const apiKey = 'AIzaSyCX2tCr8NK-xMvsuHHaX6loXxUCZ8iKB7E'; 
 
+
 $(function () {
   $search.submit(function (event) {
     event.preventDefault();
@@ -37,7 +38,7 @@ $(function () {
     //call display cards
     toggleCards();
 
-    // fetch hotels using Google Places API
+    // Fetch hotels using Google Places API
     if (hotelCheck) {
       fetchHotels(city);
     }
@@ -45,19 +46,21 @@ $(function () {
 });
 
 
+function initMap() {
+    // Your map initialization code goes here
+  }
 function toggleCards() {
-  // displays card depending on checkbox value
+  //displays card depending on checkbox value
   $hotel.toggle(hotelCheck);
   $restaurant.toggle(restaurantCheck);
   $attraction.toggle(attractionCheck);
 }
 
-// fetch hotels using Google Places API
-function fetchHotels(city, maxResults) {
+// Fetch hotels using Google Places API
+function fetchHotels(city) {
   var request = {
     query: 'hotels in ' + city,
     fields: ['name', 'formatted_address', 'rating', 'photos'],
-    maxResults: maxResults
   };
 
   var service = new google.maps.places.PlacesService(document.createElement('div'));
@@ -66,19 +69,19 @@ function fetchHotels(city, maxResults) {
       $hotel.empty(); // Clear existing hotels
 
       // Loop through the results and create hotel cards
+      var userSearch = 0; // this is to keep track of the number of results.
       results.forEach(function (result) {
-        var hotelCard = createHotelCard(result);
-        $hotel.append(hotelCard);
+        if (userSearch < 5) { // Limit to X amount of results results
+          var hotelCard = createHotelCard(result);
+          $hotel.append(hotelCard);
+          userSearch++;
+        } else {
+          return; // Exit the loop once 5 results have been added
+        }
       });
     }
   });
 }
-
-// Example usage: Fetch hotels based on user's search input
-var userSearch = ''; // Replace with the user's search input
-var maxResults = 3; // Specify the maximum number of results to retrieve
-
-fetchHotels(userSearch, maxResults);
 
 // Function to create a hotel card element
 function createHotelCard(hotel) {
