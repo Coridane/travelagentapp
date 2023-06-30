@@ -180,7 +180,7 @@ function displaySaveList()
         for(i = saveList.length; i-- ; i > 0)
         {
             var city = saveList[i].city;
-            var $a= $('<a href="#" class="w3-bar-item w3-button">' + city + '</a>');
+            var $a= $('<a href="#" class="save-item w3-bar-item w3-button">' + city + '</a>');
             //add to list
             $sidebar.append($a);
         } 
