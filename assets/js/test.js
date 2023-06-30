@@ -70,9 +70,7 @@ autocomplete.addListener('place_changed', function() {
 });
 
 
-function initMap() {
-    // Your map initialization code goes here
-  }
+  
 function toggleCards() {
   //displays card depending on checkbox value
   $hotel.toggle(hotelCheck);
