@@ -66,29 +66,37 @@ function searchAgain() {
   save();
 }
 
-function save() {
-  // This function saves the current location into local storage
-  if (city == '') return;
-  // Initialize array
-  var saveList = [];
-  // Check if the local storage has items and if it does, the saveList is the storage
-  if (localStorage.getItem('saveList') !== null) {
-    saveList = JSON.parse(localStorage.getItem('saveList'));
-  }
-  // Create a new JSON city object
-  var newCity = new saveCity(city);
-  // Check if city already exists
-  var replace = checkRepeat(saveList, city);
-  // If there is a repeat, remove it from the list from its previous position
-  if (replace !== false) {
-    saveList.splice(replace, 1);
-  }
-  // Add the object to the array
-  saveList.push(newCity);
-  // Set the storage with the updated array
-  localStorage.setItem('saveList', JSON.stringify(saveList));
-  // Update the sidebar in HTML
-  displaySaveList();
+
+function save()
+{
+    //this function saves the current loaction into the local stroage
+    if(city == '')
+        return;
+    //init array
+    var saveList = [];
+    //checks if the local storage has stuff and if it does the save List is the storage
+    if (localStorage.getItem('saveList') !== null) 
+    {
+        saveList = JSON.parse(localStorage.getItem("saveList"));
+    }
+    if(city !== '' )
+    {
+        //create new JSON object
+        var newCity = new saveCity(city);
+        //check if city already exists
+        var replace = checkRepeat(saveList, city);
+        //if there is a repeat remove it from the list from its previous postion
+        if( replace !== false)
+        {
+            saveList.splice(replace, 1);
+        }  
+        //add object to array
+        saveList.push(newCity);
+        //set the storage with the updated array
+        localStorage.setItem("saveList",JSON.stringify(saveList)); 
+    }
+    displaySaveList();
+
 }
 
 function checkRepeat(saveList, city) {
@@ -162,8 +170,68 @@ function toggleCards()
     return false;
 }
 
+function displaySaveList() {
+  // This function updates the sidebar HTML
+  var $btn = $('<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>');
+  // Remove everything in the sidebar to avoid repeats
+  $sidebar.children().remove();
+  // Add the close button
+  $sidebar.append($btn);
+  var saveList = [];
+  // If the save list isn't empty
+  if (localStorage.getItem('saveList') !== null) {
+    // Get saved list info
+    saveList = JSON.parse(localStorage.getItem('saveList'));
+    // Loop until all the list items are displayed as buttons
+    // Display in descending order so the latest item is on top
+    for (i = saveList.length; i--; i > 0) {
+      var city = saveList[i].city;
+      var $a = $('<a href="#" class="save-item w3-bar-item w3-button">' + city + '</a>');
+      // Add to list
+      $sidebar.append($a);
+    }
+  }
+}
+
+function toggleCards() {
+  // Get values from checkboxes
+  hotelCheck = $hotelCheck.is(':checked');
+  restaurantCheck = $restaurantCheck.is(':checked');
+  attractionCheck = $attractionCheck.is(':checked');
+  // Display cards depending on checkbox value
+  $hotel.toggle(hotelCheck);
+  $restaurant.toggle(restaurantCheck);
+  $attraction.toggle(attractionCheck);
+  // Check inputs in console
+  console.log('hotel check: ' + hotelCheck);
+  console.log('restaurant check: ' + restaurantCheck);
+  console.log('attractions check: ' + attractionCheck);
+  // Warning for when there are no checkboxes checked
+  if (hotelCheck == false && restaurantCheck == false && attractionCheck == false) {
+    $('#alert').show();
+  } else {
+    $('#alert').hide();
+  }
+}
+
+function toggleCards() 
+{
+    //checks if there is a repeat and send the index at repeat
+    var ind;
+    for(var i = 0; i < saveList.length; i++)
+    {
+        if(saveList[i].city == city)
+        {
+            ind = i;
+            return ind;
+        }         
+    }
+    return false;
+}
+
 function displaySaveList()
 {
+    //this function updates the sidebar html
     var $btn = $('<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>');
     //remove everything in side bar
     $sidebar.children().remove();
