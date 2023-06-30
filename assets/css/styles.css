@@ -1,5 +1,6 @@
 * {
     font-family: 'Maven Pro', sans-serif;
+    color: black
 }
 
 header {
@@ -39,9 +40,9 @@ main img {
     justify-content: space-around;
 }
 
-#restaurant {
+.cards {
     display: inline-flex;    
-    height: 400px;
+    height: 600px;
     width: 300px;
     background-color: white;
     border-style: solid;
@@ -51,34 +52,10 @@ main img {
     justify-content: center;
 }
 
-#hotel {
-    display: inline-flex;    
-    height: 400px;
-    width: 300px;
-    background-color: white;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
-    color: white;
-    justify-content: center;    
-}
-
-#attraction {
-    display: inline-flex;    
-    height: 400px;
-    width: 300px;
-    background-color: white;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
-    color: white;
-    justify-content: center;
-}
-
 #weather {
     display: inline-flex;
     height: 200px;
-    width: 1250px;
+    width: 1350px;
     background-color: white;
     border-style: solid;
     border-width: 1px;
