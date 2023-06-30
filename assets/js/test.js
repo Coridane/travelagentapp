@@ -113,11 +113,12 @@ function toggleCards() {
   $attraction.toggle(attractionCheck);  
 }
 
-// Fetch hotels using Google Places API
-function fetchHotels(city) {
+// fetch hotels using Google Places API
+function fetchHotels(city, maxResults) {  
   var request = {
     query: 'hotels in ' + city,
     fields: ['name', 'formatted_address', 'rating', 'photos'],
+    maxResults: maxResults    
   };
 
   var service = new google.maps.places.PlacesService(document.createElement('div'));
