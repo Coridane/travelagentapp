@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Travel Agent App</title>
 
 </head>
@@ -17,8 +18,21 @@
 <body>
 
     <header>
-
-        <h1>Welcome Traveler</h1>
+        <div class="w3-sidebar w3-bar-block" style="display:none" id="mySidebar">
+            <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+            <a href="#" class="w3-bar-item w3-button">Link 1</a>
+            <a href="#" class="w3-bar-item w3-button">Link 2</a>
+            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+        </div>
+    
+        <div class="w3">
+            
+            <div class="w3-container">
+                <button class="w3-button w3-xlarge" style="float: left;"  onclick="w3_open()">☰</button>
+                <h1>Welcome Traveler</h1>
+            </div>
+            
+        </div>
         <img src="./assets/img/travel_agent_logo_black.png" alt="black and white travel logo" />
 
     </header>
@@ -74,7 +88,7 @@
     <!-- jquery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX2tCr8NK-xMvsuHHaX6loXxUCZ8iKB7E&libraries=places&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX2tCr8NK-xMvsuHHaX6loXxUCZ8iKB7E&libraries=places"></script>
     <script src="./assets/js/test.js"></script> 
 </body>
 

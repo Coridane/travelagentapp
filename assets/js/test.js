@@ -46,9 +46,7 @@ $(function () {
 });
 
 
-function initMap() {
-    // Your map initialization code goes here
-  }
+  
 function toggleCards() {
   //displays card depending on checkbox value
   $hotel.toggle(hotelCheck);
@@ -76,7 +74,7 @@ function fetchHotels(city) {
           $hotel.append(hotelCard);
           userSearch++;
         } else {
-          return; // Exit the loop once 5 results have been added
+          return; // Exit the loop once X results have been added
         }
       });
     }
