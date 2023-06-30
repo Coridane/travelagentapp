@@ -148,12 +148,11 @@ function toggleCards() {
 }
 
 
-function toggleCards()
-{
-    //displays card depinding on checkbox value
-    $hotel.toggle(hotelCheck);
-    $restaurant.toggle(restaurantCheck);    
-    $attraction.toggle(attractionCheck);
+function toggleCards() {
+  // displays card depending on checkbox value
+  $hotel.toggle(hotelCheck);
+  $restaurant.toggle(restaurantCheck);
+  $attraction.toggle(attractionCheck);
 }
 
 // Loop for team logo video
