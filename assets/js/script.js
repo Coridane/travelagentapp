@@ -63,6 +63,7 @@ $(function () {
         } else {
             $('#alert').hide();
         }
+        //displays the api calls on html
         fetchResults();
      });
 
@@ -77,6 +78,12 @@ function searchAgain()
     //gets the city that was pressed
     city =  $(this).text();
     console.log("city pressed: " + city);
+    // get values from checkboxes
+    hotelCheck = $hotelCheck.is(":checked");
+    restaurantCheck = $restaurantCheck.is(":checked");
+    attractionCheck = $attractionCheck.is(":checked");
+    toggleCards();
+    fetchResults();
     //save again
     save();
 }
