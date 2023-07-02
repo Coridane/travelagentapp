@@ -567,3 +567,53 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
 }
 //end of sidebar
+
+//API stuff
+// Fetch hotels using Google Places API
+function fetchHotels(city) {
+  var request = {
+    query: 'hotels in ' + city,
+    fields: ['name', 'formatted_address', 'rating', 'photos'],
+  };
+
+  var service = new google.maps.places.PlacesService(document.createElement('div'));
+  service.textSearch(request, function (results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      $hotel.empty(); // Clear existing hotels
+
+      // Loop through the results and create hotel cards
+      var userSearch = 0; // this is to keep track of the number of results.
+      results.forEach(function (result) {
+        if (userSearch < 5) { // Limit to X amount of results results
+          var hotelCard = createHotelCard(result);
+          $hotel.append(hotelCard);
+          userSearch++;
+        } else {
+          return; // Exit the loop once X results have been added
+        }
+      });
+    }
+  });
+}
+
+// Function to create a hotel card element
+function createHotelCard(hotel) {
+  var card = $('<div>').addClass('hotel-card');
+  var name = $('<h3>').text(hotel.name);
+  var address = $('<p>').text(hotel.formatted_address);
+  var rating = $('<p>').text('Rating: ' + hotel.rating);
+  var photo = $('<img>');
+
+  if (hotel.photos && hotel.photos.length > 0) {
+    photo.attr('src', hotel.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
+  } else {
+    photo.attr('src', 'placeholder.jpg'); // Placeholder image if no photo available
+  }
+
+  card.append(name);
+  card.append(address);
+  card.append(rating);
+  card.append(photo);
+
+  return card;
+}
