@@ -594,133 +594,35 @@ function fetchResults()
   console.log("city in fetch Results " + city);
   // Fetch hotels using Google Places API
   if (hotelCheck) {
-    fetchHotels(city);
+    fetch(city,'hotel');
   }
   if (restaurantCheck) {
-    fetchRestaurants(city);
+    fetch(city, 'restaurant');
   }
   if (attractionCheck) {
-    fetchAttractions(city);
+    fetch(city, 'attraction');
   }
 }
 
 // Fetch hotels using Google Places API
-function fetchHotels(city) {
+function fetch(city, type) {
   var request = {
-    query: 'hotels in ' + city,
+    query: type +'s in ' + city,
     fields: ['name', 'formatted_address', 'rating', 'photos'],
   };
-
+  console.log('type: ' + type);
   var service = new google.maps.places.PlacesService(document.createElement('div'));
   console.log(service);
   service.textSearch(request, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-      $hotel.empty(); // Clear existing hotels
+      $('#'+type).empty(); // Clear existing hotels
 
       // Loop through the results and create hotel cards
       var userSearch = 0; // this is to keep track of the number of results.
       results.forEach(function (result) {
         if (userSearch < 5) { // Limit to X amount of results results
-          var hotelCard = createHotelCard(result);
-          $hotel.append(hotelCard);
-          userSearch++;
-        } else {
-          return; // Exit the loop once X results have been added
-        }
-      });
-    }
-  });
-}
-
-// Function to create a hotel card element
-function createHotelCard(hotel) {
-  var card = $('<div>').addClass('hotel-card');
-  var name = $('<h3>').text(hotel.name);
-  var address = $('<p>').text(hotel.formatted_address);
-  var rating = $('<p>').text('Rating: ' + hotel.rating);
-  var photo = $('<img>');
-
-  if (hotel.photos && hotel.photos.length > 0) {
-    photo.attr('src', hotel.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
-  } else {
-    photo.attr('src', 'placeholder.jpg'); // Placeholder image if no photo available
-  }
-
-  card.append(name);
-  card.append(address);
-  card.append(rating);
-  card.append(photo);
-
-  return card;
-}
-
-// Fetch restaurants using Google Places API
-function fetchRestaurants(city) {
-  var request = {
-    query: 'restaurants in ' + city,
-    fields: ['name', 'formatted_address', 'rating', 'photos'],
-  };
-
-  var service = new google.maps.places.PlacesService(document.createElement('div'));
-  service.textSearch(request, function (results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      $restaurant.empty(); // Clear existing restaurant
-
-      // Loop through the results and create retaurant cards
-      var userSearch = 0; // this is to keep track of the number of results.
-      results.forEach(function (result) {
-        if (userSearch < 5) { // Limit to X amount of results results
-          var restaurantCard = createRestaurantCard(result);
-          $restaurant.append(restaurantCard);
-          userSearch++;
-        } else {
-          return; // Exit the loop once X results have been added
-        }
-      });
-    }
-  });
-}
-
-// Function to create a restaurant card element
-function createRestaurantCard(restaurant) {
-  var card = $('<div>').addClass('restaurant-card');
-  var name = $('<h3>').text(restaurant.name);
-  var address = $('<p>').text(restaurant.formatted_address);
-  var rating = $('<p>').text('Rating: ' + restaurant.rating);
-  var photo = $('<img>');
-
-  if (restaurant.photos && restaurant.photos.length > 0) {
-    photo.attr('src', restaurant.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
-  } else {
-    photo.attr('src', 'placeholder.jpg'); // Placeholder image if no photo available
-  }
-
-  card.append(name);
-  card.append(address);
-  card.append(rating);
-  card.append(photo);
-
-  return card;
-}
-
-// Fetch attractions using Google Places API
-function fetchAttractions(city) {
-  var request = {
-    query: 'hotels in ' + city,
-    fields: ['name', 'formatted_address', 'rating', 'photos'],
-  };
-
-  var service = new google.maps.places.PlacesService(document.createElement('div'));
-  service.textSearch(request, function (results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      $attraction.empty(); // Clear existing attractions
-
-      // Loop through the results and create attraction cards
-      var userSearch = 0; // this is to keep track of the number of results.
-      results.forEach(function (result) {
-        if (userSearch < 5) { // Limit to X amount of results results
-          var attractionCard = createAttractionCard(result);
-          $attraction.append(attractionCard);
+          var card = createCard(result,type);
+          $('#'+type).append(card);
           userSearch++;
         } else {
           return; // Exit the loop once X results have been added
@@ -731,15 +633,15 @@ function fetchAttractions(city) {
 }
 
 // Function to create a attraction card element
-function createAttractionCard(attraction) {
-  var card = $('<div>').addClass('hotel-card');
-  var name = $('<h3>').text(attraction.name);
-  var address = $('<p>').text(attraction.formatted_address);
-  var rating = $('<p>').text('Rating: ' + attraction.rating);
+function createCard(results, type) {
+  var card = $('<div>').addClass(type+'-card');
+  var name = $('<h3>').text(results.name);
+  var address = $('<p>').text(results.formatted_address);
+  var rating = $('<p>').text('Rating: ' + results.rating);
   var photo = $('<img>');
 
-  if (attraction.photos && attraction.photos.length > 0) {
-    photo.attr('src', attraction.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
+  if (results.photos && results.photos.length > 0) {
+    photo.attr('src', results.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
   } else {
     photo.attr('src', 'placeholder.jpg'); // Placeholder image if no photo available
   }
