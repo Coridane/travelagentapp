@@ -51,6 +51,13 @@ $(function () {
         // call display cards
         toggleCards();
         //displays the api calls on html
+        // checks to see if at least one checkbox is checked 
+        if (hotelCheck == false && restaurantCheck == false && attractionCheck == false) {
+            $('#alert').show();
+        } else {
+            $('#alert').hide();
+        }
+        //displays the api calls on html
         fetchResults();
      });
 
@@ -178,6 +185,125 @@ function searchAgain()
     //gets the city that was pressed
     city =  $(this).text();
     console.log("city pressed: " + city);
+    //displays depending on checkboxes
+    toggleCards();
+    //shows the results from API fetch
+    fetchResults();
+    //save again (this will make item at top of save list)
+    save();
+}
+
+
+function save()
+{
+    //this function saves the current loaction into the local stroage
+    if(city == '')
+        return;
+    //init array
+    var saveList = [];
+    //checks if the local storage has stuff and if it does the save List is the storage
+    if (localStorage.getItem('saveList') !== null) 
+    {
+        saveList = JSON.parse(localStorage.getItem("saveList"));
+    }
+    //create new JSON city object
+    var newCity = new saveCity(city);
+    //check if city already exists
+    var replace = checkRepeat(saveList, city);
+    //if there is a repeat remove it from the list from its previous postion
+    if( replace !== false)
+    {
+        saveList.splice(replace, 1);
+    }  
+    //add object to array
+    saveList.push(newCity);
+    //set the storage with the updated array
+    localStorage.setItem("saveList",JSON.stringify(saveList)); 
+    //updates the sidebar in html
+    displaySaveList();
+
+}
+
+function checkRepeat(saveList, city)
+{
+    //checks if there is a repeat and send the index at repeat
+    var ind;
+    for(var i = 0; i < saveList.length; i++)
+    {
+        if(saveList[i].city == city)
+        {
+            ind = i;
+            return ind;
+        }         
+    }
+    return false;
+}
+
+function displaySaveList()
+{
+    //this function updates the sidebar html
+    var $btn = $('<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>');
+    //remove everything in side bar to avoid repeats
+    $sidebar.children().remove();
+    //add the close the button
+    $sidebar.append($btn);
+    var saveList = [];
+    //if the save list isn't empty
+    if (localStorage.getItem('saveList') !== null) 
+    {
+        //get saved listinfo
+        saveList = JSON.parse(localStorage.getItem("saveList"));
+        //loop until all the list is displayed as buttons
+        //is in descending order so the latest item is on top
+        for(i = saveList.length; i-- ; i > 0)
+        {
+            var city = saveList[i].city;
+            var $a= $('<a href="#" class="save-item w3-bar-item w3-button">' + city + '</a>');
+            //add to list
+            $sidebar.append($a);
+        } 
+    }
+}
+
+function toggleCards()
+{
+    // get values from checkboxes
+    hotelCheck = $hotelCheck.is(":checked");
+    restaurantCheck = $restaurantCheck.is(":checked");
+    attractionCheck = $attractionCheck.is(":checked");
+    //displays card depinding on checkbox value
+    $hotel.toggle(hotelCheck);
+    $restaurant.toggle(restaurantCheck);    
+    $attraction.toggle(attractionCheck);
+    //check inputs in console
+    console.log("hotel check: " + hotelCheck);
+    console.log("restaurant check: " + restaurantCheck);
+    console.log("attractions check: " + attractionCheck);
+    //warning for when there are no checkboxes checked
+    if (hotelCheck == false && restaurantCheck == false && attractionCheck == false) {
+        $('#alert').show();
+    } else {
+        $('#alert').hide();
+    }
+}
+
+    //store save on button click
+    $save.on("click", save);
+    $sidebar.on("click",'.save-item', searchAgain);
+
+});
+
+function searchAgain()
+{
+    //gets the city that was pressed
+    city =  $(this).text();
+    console.log("city pressed: " + city);
+    // get values from checkboxes
+    hotelCheck = $hotelCheck.is(":checked");
+    restaurantCheck = $restaurantCheck.is(":checked");
+    attractionCheck = $attractionCheck.is(":checked");
+    toggleCards();
+    fetchResults();
     //save again
     save();
 }
