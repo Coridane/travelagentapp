@@ -464,9 +464,11 @@ function searchAgain()
     //gets the city that was pressed
     city =  $(this).text();
     console.log("city pressed: " + city);
+    //displays depending on checkboxes
     toggleCards();
+    //shows the results from API fetch
     fetchResults();
-    //save again
+    //save again (this will make item at top of save list)
     save();
 }
 
@@ -483,8 +485,7 @@ function save()
     {
         saveList = JSON.parse(localStorage.getItem("saveList"));
     }
-    
-    //create new JSON object
+    //create new JSON city object
     var newCity = new saveCity(city);
     //check if city already exists
     var replace = checkRepeat(saveList, city);
@@ -521,7 +522,7 @@ function displaySaveList()
 {
     //this function updates the sidebar html
     var $btn = $('<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>');
-    //remove everything in side bar
+    //remove everything in side bar to avoid repeats
     $sidebar.children().remove();
     //add the close the button
     $sidebar.append($btn);
@@ -543,8 +544,6 @@ function displaySaveList()
     }
 }
 
-
-
 function toggleCards()
 {
     // get values from checkboxes
@@ -559,8 +558,7 @@ function toggleCards()
     console.log("hotel check: " + hotelCheck);
     console.log("restaurant check: " + restaurantCheck);
     console.log("attractions check: " + attractionCheck);
-    //warning
-    // checks to see if at least one checkbox is checked 
+    //warning for when there are no checkboxes checked
     if (hotelCheck == false && restaurantCheck == false && attractionCheck == false) {
         $('#alert').show();
     } else {
@@ -587,12 +585,12 @@ function w3_close() {
 }
 //end of sidebar
 
-//API stuff
+//API stuff-----------------------------------------------
 
 function fetchResults()
 {
   console.log("city in fetch Results " + city);
-  // Fetch hotels using Google Places API
+  //fetch info depeding on checkboxes
   if (hotelCheck) {
     fetch(city,'hotel');
   }
@@ -604,19 +602,24 @@ function fetchResults()
   }
 }
 
-// Fetch hotels using Google Places API
+// Fetch depending on type using Google Places API
 function fetch(city, type) {
   var request = {
     query: type +'s in ' + city,
     fields: ['name', 'formatted_address', 'rating', 'photos'],
   };
-  console.log('type: ' + type);
+  //reference the type card in html
+  var $element = $('#'+type);
+
   var service = new google.maps.places.PlacesService(document.createElement('div'));
-  console.log(service);
+  //look for the results
   service.textSearch(request, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-      $('#'+type).empty(); // Clear existing hotels
-
+      // Clear existing info
+      $element.empty(); 
+      //re-add img header
+      var img = $('<img src="./assets/img/'+type+'s.png">');
+      $element.append(img);
       // Loop through the results and create hotel cards
       var userSearch = 0; // this is to keep track of the number of results.
       results.forEach(function (result) {
@@ -632,9 +635,10 @@ function fetch(city, type) {
   });
 }
 
-// Function to create a attraction card element
+// Function to create a card element
 function createCard(results, type) {
   var card = $('<div>').addClass(type+'-card');
+  card.addClass('mini-card');
   var name = $('<h3>').text(results.name);
   var address = $('<p>').text(results.formatted_address);
   var rating = $('<p>').text('Rating: ' + results.rating);
