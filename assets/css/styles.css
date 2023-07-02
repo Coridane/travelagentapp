@@ -42,8 +42,8 @@ main img {
 
 .cards {
     display: inline-flex;    
-    height: 600px;
-    width: 300px;
+    /* height: 600px;
+    width: 300px; */
     background-color: white;
     border-style: solid;
     border-width: 1px;
@@ -82,4 +82,9 @@ footer {
 #checkboxes label
 {
     margin-right: 40px;
+}
+
+#alert
+{
+    display: none;
 }
