@@ -283,25 +283,9 @@ function w3_close() {
 }
 //end of sidebar
 
-//API stuff-----------------------------------------------
-
-function fetchResults()
-{
-  console.log("city in fetch Results " + city);
-  //fetch info depeding on checkboxes
-  if (hotelCheck) {
-    fetch(city,'hotel');
-  }
-  if (restaurantCheck) {
-    fetch(city, 'restaurant');
-  }
-  if (attractionCheck) {
-    fetch(city, 'attraction');
-  }
-}
-
-// Fetch depending on type using Google Places API
-function fetch(city, type) {
+//API stuff
+// Fetch hotels using Google Places API
+function fetchHotels(city) {
   var request = {
     query: type +'s in ' + city,
     fields: ['name', 'formatted_address', 'rating', 'photos'],
@@ -344,6 +328,107 @@ function createCard(results, type) {
 
   if (results.photos && results.photos.length > 0) {
     photo.attr('src', results.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
+  } else {
+    photo.attr('src', 'placeholder.jpg'); // Placeholder image if no photo available
+  }
+
+  card.append(name);
+  card.append(address);
+  card.append(rating);
+  card.append(photo);
+
+  return card;
+}
+
+// Fetch restaurants using Google Places API
+function fetchRestaurants(city) {
+  var request = {
+    query: 'restaurants in ' + city,
+    fields: ['name', 'formatted_address', 'rating', 'photos'],
+  };
+
+  var service = new google.maps.places.PlacesService(document.createElement('div'));
+  service.textSearch(request, function (results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      $restaurant.empty(); // Clear existing restaurant
+
+      // Loop through the results and create retaurant cards
+      var userSearch = 0; // this is to keep track of the number of results.
+      results.forEach(function (result) {
+        if (userSearch < 5) { // Limit to X amount of results results
+          var restaurantCard = createRestaurantCard(result);
+          $restaurant.append(restaurantCard);
+          userSearch++;
+        } else {
+          return; // Exit the loop once X results have been added
+        }
+      });
+    }
+  });
+}
+
+// Function to create a restaurant card element
+function createRestaurantCard(restaurant) {
+  var card = $('<div>').addClass('restaurant-card');
+  var name = $('<h3>').text(restaurant.name);
+  var address = $('<p>').text(restaurant.formatted_address);
+  var rating = $('<p>').text('Rating: ' + restaurant.rating);
+  var photo = $('<img>');
+
+  if (restaurant.photos && restaurant.photos.length > 0) {
+    photo.attr('src', restaurant.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
+  } else {
+    photo.attr('src', 'placeholder.jpg'); // Placeholder image if no photo available
+  }
+
+  card.append(name);
+  card.append(address);
+  card.append(rating);
+  card.append(photo);
+
+  return card;
+}
+
+// Fetch attractions using Google Places API
+function fetchHAttractions(city) {
+  var request = {
+    query: type +'s in ' + city,
+    fields: ['name', 'formatted_address', 'rating', 'photos'],
+  };
+  //reference the type card in html
+  var $element = $('#'+type);
+
+  var service = new google.maps.places.PlacesService(document.createElement('div'));
+  //look for the results
+  service.textSearch(request, function (results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      $attraction.empty(); // Clear existing attractions
+
+      // Loop through the results and create attraction cards
+      var userSearch = 0; // this is to keep track of the number of results.
+      results.forEach(function (result) {
+        if (userSearch < 5) { // Limit to X amount of results results
+          var attractionCard = createAttractionCard(result);
+          $attraction.append(attractionCard);
+          userSearch++;
+        } else {
+          return; // Exit the loop once X results have been added
+        }
+      });
+    }
+  });
+}
+
+// Function to create a attraction card element
+function createAttractionCard(attraction) {
+  var card = $('<div>').addClass('hotel-card');
+  var name = $('<h3>').text(attraction.name);
+  var address = $('<p>').text(attraction.formatted_address);
+  var rating = $('<p>').text('Rating: ' + attraction.rating);
+  var photo = $('<img>');
+
+  if (attraction.photos && attraction.photos.length > 0) {
+    photo.attr('src', attraction.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
   } else {
     photo.attr('src', 'placeholder.jpg'); // Placeholder image if no photo available
   }
