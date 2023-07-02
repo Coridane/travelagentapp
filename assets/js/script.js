@@ -29,7 +29,7 @@ $(function () {
     //displays the save list in the side bar
     displaySaveList();
     // Autocomplete for user search input
-    var autocomplete = new google.maps.places.Autocomplete($input[0]);
+    var autocomplete = new google.maps.places.Autocomplete($input[0],{ types: ['(cities)']});
 
     // Listen for 'place_changed' event
     autocomplete.addListener('place_changed', function() {
@@ -46,23 +46,13 @@ $(function () {
         // clear text area and give it a placeholder
         $input.val('');
         $input.attr('placeholder', 'Enter a city');
-        // get values from checkboxes
-        hotelCheck = $hotelCheck.is(":checked");
-        restaurantCheck = $restaurantCheck.is(":checked");
-        attractionCheck = $attractionCheck.is(":checked");
+        
         // check inputs in console
         console.log("user input: " + city);
-        console.log("hotel check: " + hotelCheck);
-        console.log("restaurant check: " + restaurantCheck);
-        console.log("attractions check: " + attractionCheck);
+       
         // call display cards
         toggleCards();
-        // checks to see if at least one checkbox is checked 
-        if (hotelCheck == false && restaurantCheck == false && attractionCheck == false) {
-            $('#alert').show();
-        } else {
-            $('#alert').hide();
-        }
+        
         //displays the api calls on html
         fetchResults();
      });
@@ -78,10 +68,6 @@ function searchAgain()
     //gets the city that was pressed
     city =  $(this).text();
     console.log("city pressed: " + city);
-    // get values from checkboxes
-    hotelCheck = $hotelCheck.is(":checked");
-    restaurantCheck = $restaurantCheck.is(":checked");
-    attractionCheck = $attractionCheck.is(":checked");
     toggleCards();
     fetchResults();
     //save again
@@ -92,7 +78,7 @@ function searchAgain()
 function save()
 {
     //this function saves the current loaction into the local stroage
-    if(city == undefined)
+    if(city == '')
         return;
     //init array
     var saveList = [];
@@ -161,12 +147,29 @@ function displaySaveList()
     }
 }
 
+
+
 function toggleCards()
 {
+    // get values from checkboxes
+    hotelCheck = $hotelCheck.is(":checked");
+    restaurantCheck = $restaurantCheck.is(":checked");
+    attractionCheck = $attractionCheck.is(":checked");
     //displays card depinding on checkbox value
     $hotel.toggle(hotelCheck);
     $restaurant.toggle(restaurantCheck);    
     $attraction.toggle(attractionCheck);
+    //check inputs in console
+    console.log("hotel check: " + hotelCheck);
+    console.log("restaurant check: " + restaurantCheck);
+    console.log("attractions check: " + attractionCheck);
+    //warning
+    // checks to see if at least one checkbox is checked 
+    if (hotelCheck == false && restaurantCheck == false && attractionCheck == false) {
+        $('#alert').show();
+    } else {
+        $('#alert').hide();
+    }
 }
 
 // Loop for team logo video
@@ -192,6 +195,7 @@ function w3_close() {
 
 function fetchResults()
 {
+  console.log("city in fetch Results " + city);
   // Fetch hotels using Google Places API
   if (hotelCheck) {
     fetchHotels(city);
@@ -200,7 +204,7 @@ function fetchResults()
     fetchRestaurants(city);
   }
   if (attractionCheck) {
-    fetchHAttractions(city);
+    fetchAttractions(city);
   }
 }
 
@@ -212,6 +216,7 @@ function fetchHotels(city) {
   };
 
   var service = new google.maps.places.PlacesService(document.createElement('div'));
+  console.log(service);
   service.textSearch(request, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       $hotel.empty(); // Clear existing hotels
@@ -303,7 +308,7 @@ function createRestaurantCard(restaurant) {
 }
 
 // Fetch attractions using Google Places API
-function fetchHAttractions(city) {
+function fetchAttractions(city) {
   var request = {
     query: 'hotels in ' + city,
     fields: ['name', 'formatted_address', 'rating', 'photos'],
