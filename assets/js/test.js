@@ -46,7 +46,7 @@ $(function () {
 });
 
 
-// test change for github workflow
+// test change for github
 
 // Autocomplete for user search input
 var autocomplete = new google.maps.places.Autocomplete($input[0]);
@@ -82,7 +82,7 @@ function fetchHotels(city) {
       // Loop through the results and create hotel cards
       var userSearch = 0; // this is to keep track of the number of results.
       results.forEach(function (result) {
-        if (userSearch < 5) { // Limit to X amount of results results
+        if (userSearch < 2) { // Limit to X amount of results results
           var hotelCard = createHotelCard(result);
           $hotel.append(hotelCard);
           userSearch++;
