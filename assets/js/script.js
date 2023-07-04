@@ -79,22 +79,20 @@ function save()
     {
         saveList = JSON.parse(localStorage.getItem("saveList"));
     }
-    if(city !== '' )
+    //create new JSON city object
+    var newCity = new saveCity(city);
+    //check if city already exists
+    var replace = checkRepeat(saveList, city);
+    //if there is a repeat remove it from the list from its previous postion
+    if( replace !== false)
     {
-        //create new JSON object
-        var newCity = new saveCity(city);
-        //check if city already exists
-        var replace = checkRepeat(saveList, city);
-        //if there is a repeat remove it from the list from its previous postion
-        if( replace !== false)
-        {
-            saveList.splice(replace, 1);
-        }  
-        //add object to array
-        saveList.push(newCity);
-        //set the storage with the updated array
-        localStorage.setItem("saveList",JSON.stringify(saveList)); 
-    }
+        saveList.splice(replace, 1);
+    }  
+    //add object to array
+    saveList.push(newCity);
+    //set the storage with the updated array
+    localStorage.setItem("saveList",JSON.stringify(saveList)); 
+    //updates the sidebar in html
     displaySaveList();
 
 }
