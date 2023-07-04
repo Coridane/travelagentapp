@@ -5,7 +5,7 @@ var $input = $('#input');
 var $hotelCheck = $('#hotelCheck');
 var $restaurantCheck = $('#restaurantCheck');
 var $attractionCheck = $('#attractionCheck');
-//card elements
+// card elements
 var $hotel = $('#hotel');
 var $restaurant = $('#restaurant');
 var $attraction = $('#attraction');
@@ -15,8 +15,7 @@ var restaurantCheck;
 var attractionCheck;
 // location variable used in js
 var city;
-const apiKey = 'AIzaSyCX2tCr8NK-xMvsuHHaX6loXxUCZ8iKB7E'; 
-
+const apiKey = 'YOUR_API_KEY';
 
 $(function () {
   $search.submit(function (event) {
@@ -30,45 +29,46 @@ $(function () {
     hotelCheck = $hotelCheck.is(":checked");
     restaurantCheck = $restaurantCheck.is(":checked");
     attractionCheck = $attractionCheck.is(":checked");
-    //check inputs in console
-    console.log("user input: " + city);
-    console.log("hotel check: " + hotelCheck);
-    console.log("restaurant check: " + restaurantCheck);
-    console.log("attractions check: " + attractionCheck);
-    //call display cards
+    // call display cards
     toggleCards();
 
     // Fetch hotels using Google Places API
     if (hotelCheck) {
-      fetchHotels(city);
+      fetchHotels(city, 5); // Limiting to 5 results
+    }
+
+    // Fetch restaurants using Google Places API
+    if (restaurantCheck) {
+      fetchRestaurants(city, 5); // Limiting to 5 results
+    }
+
+    // Fetch attractions using Google Places API
+    if (attractionCheck) {
+      fetchAttractions(city, 5); // Limiting to 5 results
     }
   });
 });
 
-
-// test change for github
-
-// Autocomplete for user search input
+// autocomplete for user search
 var autocomplete = new google.maps.places.Autocomplete($input[0]);
 
-// use an eventlistener for 'input event
-autocomplete.addListener('place_changed', function() {
+// use an event listener for 'place_changed' event
+autocomplete.addListener('place_changed', function () {
   var place = autocomplete.getPlace();
   if (place && place.formatted_address) {
     city = place.formatted_address;
   }
 });
 
-
 function toggleCards() {
-  //displays card depending on checkbox value
+  // displays card depending on checkbox value
   $hotel.toggle(hotelCheck);
   $restaurant.toggle(restaurantCheck);
-  $attraction.toggle(attractionCheck);  
+  $attraction.toggle(attractionCheck);
 }
 
 // Fetch hotels using Google Places API
-function fetchHotels(city) {
+function fetchHotels(city, limit) {
   var request = {
     query: 'hotels in ' + city,
     fields: ['name', 'formatted_address', 'rating', 'photos'],
@@ -79,15 +79,67 @@ function fetchHotels(city) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       $hotel.empty(); // Clear existing hotels
 
-      // Loop through the results and create hotel cards
-      var userSearch = 0; // this is to keep track of the number of results.
+      // loop through the results and create hotel results
+      var count = 0; // count tracks the number of results
       results.forEach(function (result) {
-        if (userSearch < 2) { // Limit to X amount of results results
+        if (count < limit) {
           var hotelCard = createHotelCard(result);
           $hotel.append(hotelCard);
-          userSearch++;
+          count++;
         } else {
-          return; // Exit the loop once X results have been added
+          return; // Exit the loop once the limit is reached
+        }
+      });
+    }
+  });
+}
+
+// Fetch restaurants using Google Places API
+function fetchRestaurants(city, limit) {
+  var request = {
+    query: 'restaurants in ' + city,
+    fields: ['name', 'formatted_address', 'rating', 'photos'],
+  };
+
+  var service = new google.maps.places.PlacesService(document.createElement('div'));
+  service.textSearch(request, function (results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      $restaurant.empty(); // clear existing restaurants
+
+      var count = 0; 
+      results.forEach(function (result) {
+        if (count < limit) {
+          var restaurantCard = createRestaurantCard(result);
+          $restaurant.append(restaurantCard);
+          count++;
+        } else {
+          return; 
+        }
+      });
+    }
+  });
+}
+
+// fetch attractions using Google Places API
+function fetchAttractions(city, limit) {
+  var request = {
+    query: 'attractions in ' + city,
+    fields: ['name', 'formatted_address', 'rating', 'photos'],
+  };
+
+  var service = new google.maps.places.PlacesService(document.createElement('div'));
+  service.textSearch(request, function (results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      $attraction.empty(); // Clear existing attractions
+
+      var count = 0;
+      results.forEach(function (result) {
+        if (count < limit) {
+          var attractionCard = createAttractionCard(result);
+          $attraction.append(attractionCard);
+          count++;
+        } else {
+          return; 
         }
       });
     }
@@ -116,11 +168,47 @@ function createHotelCard(hotel) {
   return card;
 }
 
-// Loop for team logo video
-document.getElementById('video').addEventListener('ended', myHandler, false);
-function myHandler(e) {
-  console.log('ended');
-  setTimeout(function () {
-    document.getElementById('video').play();
-  }, 2000);
+// Function to create a restaurant card element
+function createRestaurantCard(restaurant) {
+  var card = $('<div>').addClass('restaurant-card');
+  var name = $('<h3>').text(restaurant.name);
+  var address = $('<p>').text(restaurant.formatted_address);
+  var rating = $('<p>').text('Rating: ' + restaurant.rating);
+  var photo = $('<img>');
+
+  if (restaurant.photos && restaurant.photos.length > 0) {
+    photo.attr('src', restaurant.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
+  } else {
+    // Placeholder image if no photo available
+    photo.attr('src', 'placeholder.jpg'); 
+  }
+
+  card.append(name);
+  card.append(address);
+  card.append(rating);
+  card.append(photo);
+
+  return card;
+}
+
+// function to create an attraction card element
+function createAttractionCard(attraction) {
+  var card = $('<div>').addClass('attraction-card');
+  var name = $('<h3>').text(attraction.name);
+  var address = $('<p>').text(attraction.formatted_address);
+  var rating = $('<p>').text('Rating: ' + attraction.rating);
+  var photo = $('<img>');
+
+  if (attraction.photos && attraction.photos.length > 0) {
+    photo.attr('src', attraction.photos[0].getUrl({ maxWidth: 300, maxHeight: 200 }));
+  } else {
+    photo.attr('src', 'placeholder.jpg'); // Placeholder image if no photo available
+  }
+
+  card.append(name);
+  card.append(address);
+  card.append(rating);
+  card.append(photo);
+
+  return card;
 }
