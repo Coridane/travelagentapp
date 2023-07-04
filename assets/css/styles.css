@@ -55,7 +55,7 @@ main img {
 #weather {
     display: inline-flex;
     height: 200px;
-    width: 1350px;
+    width: 100vw;
     background-color: white;
     border-style: solid;
     border-width: 1px;
@@ -95,4 +95,20 @@ footer {
     padding: 1px;
     border: 2px solid darkgray;
     background-color:#E5E5E5;
+    opacity: 70%;
+}
+
+#save{
+    position: fixed;
+    right: 10px;
+    top: 0;
+    padding: 1px;
+    border: 2px solid darkgray;
+    background-color:#E5E5E5;
+    opacity: 70%;
+}
+
+.mini-card{
+    width: 33vw;
+
 }
