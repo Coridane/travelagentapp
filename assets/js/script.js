@@ -17,6 +17,7 @@ var attractionCheck;
 // location variable used in js
 var city;
 const apiKey = '4fe3b9ab993ff0a3ff4a427e9b40def8';
+var cymKey =   'c8502ebcdb7a83fd03a62d0aaaafa07c';
 //city object
 var $save = $('#save');
 var saveList = [];
@@ -201,6 +202,7 @@ function fetchResults()
   if (attractionCheck) {
     fetch(city, 'attraction');
   }
+  getCoordAPI(city);
 }
 
 // Fetch depending on type using Google Places API
@@ -257,4 +259,55 @@ function createCard(results, type) {
   card.append(photo);
 
   return card;
+}
+
+
+function getCoordAPI(city)
+{
+  
+    var coordURL = 'https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid='+ cymKey;
+    $.ajax(
+    {
+        url: coordURL,
+        method: "GET",
+        error: function(response)
+        {
+            console.log(response.status);
+        }
+
+    })
+    .then(function(response)
+    {   
+        //get city name
+        var city = response.name;
+        console.log(city);
+        //get coordinates
+        console.log(response);
+        var lat = response.coord.lat;
+        var lon = response.coord.lon;
+        //show weather api
+        getWeatherAPI(lat,lon, city);
+    })
+}
+var $weather=  $('#weather');
+function getWeatherAPI(lat, lon, city)
+{
+    var  cityURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='
+                  + lat + '&lon='+ lon +'&units=imperial'+
+                  '&exclude=minutely,hourly'+'&appid='+ cymKey;
+    
+    $.ajax
+    ({
+        url: cityURL,
+        method: "GET"
+    })
+    .then(function(response)
+    {
+        console.log(response);
+        $weather.children().remove();
+        var $temp=  $('<div id = "temp">');
+        var temp = response.daily[0].temp.day;
+        $temp.text('Temp: '+ temp + ' °F ');
+        $weather.append($temp);
+    })
 }
