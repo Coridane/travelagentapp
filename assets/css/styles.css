@@ -41,7 +41,7 @@ main img {
 }
 
 .cards {
-    display: inline-flex;    
+    display: inline;    
     /* height: 600px;
     width: 300px; */
     background-color: white;
@@ -87,4 +87,12 @@ footer {
 #alert
 {
     display: none;
+}
+
+#save_p{
+    position: fixed;
+    top: 0;
+    padding: 1px;
+    border: 2px solid darkgray;
+    background-color:#E5E5E5;
 }
