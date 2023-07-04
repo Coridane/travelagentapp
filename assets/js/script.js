@@ -20,7 +20,7 @@ const apiKey = '4fe3b9ab993ff0a3ff4a427e9b40def8';
 //city object
 var $save = $('#save');
 var saveList = [];
-var saveCity = function(cty)
+var saveItem = function(cty)
 {
   this.city = cty;
 }
@@ -87,7 +87,7 @@ function save()
         saveList = JSON.parse(localStorage.getItem("saveList"));
     }
     //create new JSON city object
-    var newCity = new saveCity(city);
+    var newCity = new saveItem(city);
     //check if city already exists
     var replace = checkRepeat(saveList, city);
     //if there is a repeat remove it from the list from its previous postion
