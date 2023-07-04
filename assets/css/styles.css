@@ -112,3 +112,19 @@ footer {
     width: 33vw;
 
 }
+
+@media only screen and (max-width: 650px){
+    .wrapper{
+        flex-wrap: wrap;
+    }
+    .cards{
+        width: 100%;
+        margin-top: 50px;
+        border: 0;
+    }
+    .mini-card{
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+} 
