@@ -16,7 +16,7 @@ var restaurantCheck;
 var attractionCheck;
 // location variable used in JavaScript
 var city;
-const apiKey = 'c8502ebcdb7a83fd03a62d0aaaafa07c'; // Replace with your OpenWeatherMap API key
+const apiKey = 'c8502ebcdb7a83fd03a62d0aaaafa07c';
 
 // City object
 var $save = $('#save');
@@ -168,7 +168,8 @@ function w3_close() {
   document.getElementById('mySidebar').style.display = 'none';
 }
 
-// API stuff
+// API stuff -------------------------------------------------------------------------------------------
+
 function fetchResults() {
   console.log('city in fetch Results ' + city);
   // Fetch info depending on checkboxes
@@ -181,7 +182,7 @@ function fetchResults() {
   if (attractionCheck) {
     fetchPlaces(city, 'attraction');
   }
-  fetchWeather(city);
+  fetchWeather(city, 'imperial'); // Pass 'imperial' as the unit parameter for Fahrenheit
 }
 
 // Fetch places depending on type using Google Places API
@@ -241,9 +242,10 @@ function createCard(result, type) {
 }
 
 // Fetch weather using OpenWeatherMap API
-function fetchWeather(city) {
-  var apiKey = 'YOUR_OPENWEATHERMAP_API_KEY'; // Replace with your OpenWeatherMap API key
-  var url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+function fetchWeather(city, unit) {
+  var apiKey = '4fe3b9ab993ff0a3ff4a427e9b40def8'; // Replace with your OpenWeatherMap API key
+  var units = unit === 'imperial' ? 'imperial' : 'metric'; // Set units to 'imperial' for Fahrenheit, 'metric' for Celsius
+  var url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${units}&appid=${apiKey}`;
 
   $.ajax({
     url: url,
@@ -253,16 +255,17 @@ function fetchWeather(city) {
       console.log(response);
       // Clear existing weather info
       $('#weather').empty();
-      // Loop through the forecast data and create weather cards
+      // Get forecast list
       var forecastList = response.list;
-      for (var i = 0; i < forecastList.length; i++) {
-        if (i < 14) { // Limit to 14-day forecast
-          var forecast = forecastList[i];
-          var card = createWeatherCard(forecast);
-          $('#weather').append(card);
-        } else {
-          break; // Exit the loop once 14-day forecast is complete
-        }
+      // Calculate daily average temperatures
+      var dailyAverages = calculateDailyAverages(forecastList);
+      // Loop through the daily average temperatures and create weather cards
+      for (var i = 0; i < dailyAverages.length; i++) {
+        var date = dailyAverages[i].date;
+        var averageTemperature = dailyAverages[i].averageTemperature;
+        var iconCode = dailyAverages[i].iconCode;
+        var card = createWeatherCard(date, averageTemperature, iconCode, unit);
+        $('#weather').append(card);
       }
     },
     error: function (error) {
@@ -271,16 +274,70 @@ function fetchWeather(city) {
   });
 }
 
+// Function to calculate daily average temperatures
+function calculateDailyAverages(forecastList) {
+  var dailyAverages = [];
+  var currentDate = null;
+  var dailyTemperatures = [];
+  var dailyIcons = [];
+  // Loop through the forecast data
+  for (var i = 0; i < forecastList.length; i++) {
+    var forecast = forecastList[i];
+    var forecastDate = new Date(forecast.dt_txt.split(' ')[0]);
+    // If it's a new date, calculate the daily average temperature
+    if (currentDate === null || currentDate.getTime() !== forecastDate.getTime()) {
+      if (currentDate !== null) {
+        var averageTemperature = calculateAverageTemperature(dailyTemperatures);
+        dailyAverages.push({ date: currentDate, averageTemperature: averageTemperature, iconCode: dailyIcons[0] });
+        dailyIcons = [];
+      }
+      currentDate = forecastDate;
+      dailyTemperatures = [forecast.main.temp];
+      dailyIcons.push(forecast.weather[0].icon);
+    } else {
+      dailyTemperatures.push(forecast.main.temp);
+      dailyIcons.push(forecast.weather[0].icon);
+    }
+  }
+  // Calculate the average temperature for the last day
+  var averageTemperature = calculateAverageTemperature(dailyTemperatures);
+  dailyAverages.push({ date: currentDate, averageTemperature: averageTemperature, iconCode: dailyIcons[0] });
+  return dailyAverages;
+}
+
+// Function to calculate average temperature
+function calculateAverageTemperature(temperatures) {
+  var sum = 0;
+  for (var i = 0; i < temperatures.length; i++) {
+    sum += temperatures[i];
+  }
+  return sum / temperatures.length;
+}
+
 // Function to create a weather card element
-function createWeatherCard(forecast) {
+function createWeatherCard(date, temperature, iconCode, unit) {
   var card = $('<div>').addClass('weather-card');
-  var date = $('<p>').text('Date: ' + forecast.dt_txt);
-  var temperature = $('<p>').text('Temperature: ' + forecast.main.temp);
-  var description = $('<p>').text('Description: ' + forecast.weather[0].description);
-
-  card.append(date);
-  card.append(temperature);
-  card.append(description);
-
+  var formattedDate = formatDate(date);
+  var temperatureText;
+  if (unit === 'imperial') {
+    temperatureText = 'Daily Average Temperature: ' + Math.round(temperature) + ' °F'; // Display temperature in Fahrenheit
+  } else if (unit === 'metric') {
+    temperatureText = 'Daily Average Temperature: ' + Math.round(temperature) + ' °C'; // Display temperature in Celsius
+  } else {
+    temperatureText = 'Daily Average Temperature: ' + Math.round(temperature) + ' K'; // Display temperature in Kelvin
+  }
+  var dateElement = $('<p>').text(formattedDate);
+  var temperatureElement = $('<p>').text(temperatureText);
+  var iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`; // Icon URL
+  var iconElement = $('<img>').attr('src', iconUrl);
+  card.append(dateElement);
+  card.append(temperatureElement);
+  card.append(iconElement);
   return card;
+}
+
+// Function to format date in "Weekday, Month Day" format
+function formatDate(date) {
+  var options = { weekday: 'long', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('en-US', options);
 }
