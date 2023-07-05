@@ -79,7 +79,7 @@ function fetchHotels(city, limit) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       $hotel.empty(); // Clear existing hotels
 
-      // loop through the results and create hotel results
+      // loops through the results and create hotel results
       var count = 0; // count tracks the number of results
       results.forEach(function (result) {
         if (count < limit) {
