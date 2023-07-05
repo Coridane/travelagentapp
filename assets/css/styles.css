@@ -41,7 +41,7 @@ main img {
 }
 
 .cards {
-    display: inline-flex;    
+    display: inline;    
     /* height: 600px;
     width: 300px; */
     background-color: white;
@@ -55,7 +55,7 @@ main img {
 #weather {
     display: inline-flex;
     height: 200px;
-    width: 1350px;
+    width: 100vw;
     background-color: white;
     border-style: solid;
     border-width: 1px;
@@ -88,3 +88,43 @@ footer {
 {
     display: none;
 }
+
+#save_p{
+    position: fixed;
+    top: 0;
+    padding: 1px;
+    border: 2px solid darkgray;
+    background-color:#E5E5E5;
+    opacity: 70%;
+}
+
+#save{
+    position: fixed;
+    right: 10px;
+    top: 0;
+    padding: 1px;
+    border: 2px solid darkgray;
+    background-color:#E5E5E5;
+    opacity: 70%;
+}
+
+.mini-card{
+    width: 33vw;
+
+}
+
+@media only screen and (max-width: 650px){
+    .wrapper{
+        flex-wrap: wrap;
+    }
+    .cards{
+        width: 100%;
+        margin-top: 50px;
+        border: 0;
+    }
+    .mini-card{
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+} 

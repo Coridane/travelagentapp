@@ -60,6 +60,58 @@ autocomplete.addListener('place_changed', function () {
   }
 });
 
+<<<<<<< HEAD
+=======
+
+// Autocomplete for user search input
+var autocomplete = new google.maps.places.Autocomplete($input[0]);
+
+// use an eventlistener for 'input event
+autocomplete.addListener('place_changed', function() {
+  var place = autocomplete.getPlace();
+  if (place && place.formatted_address) {
+    city = place.formatted_address;
+  }
+});
+
+
+// Autocomplete for user search input
+var autocomplete = new google.maps.places.Autocomplete($input[0]);
+
+// use an eventlistener for 'input event
+autocomplete.addListener('place_changed', function() {
+  var place = autocomplete.getPlace();
+  if (place && place.formatted_address) {
+    city = place.formatted_address;
+  }
+});
+
+
+// Autocomplete for user search input
+var autocomplete = new google.maps.places.Autocomplete($input[0]);
+
+// use an eventlistener for 'input event
+autocomplete.addListener('place_changed', function() {
+  var place = autocomplete.getPlace();
+  if (place && place.formatted_address) {
+    city = place.formatted_address;
+  }
+});
+
+
+// Autocomplete for user search input
+var autocomplete = new google.maps.places.Autocomplete($input[0]);
+
+// use an eventlistener for 'input event
+autocomplete.addListener('place_changed', function() {
+  var place = autocomplete.getPlace();
+  if (place && place.formatted_address) {
+    city = place.formatted_address;
+  }
+});
+
+
+>>>>>>> 5bccbd38792a9505dcd346fa8091787693a81017
 function toggleCards() {
   // displays card depending on checkbox value
   $hotel.toggle(hotelCheck);
@@ -67,11 +119,17 @@ function toggleCards() {
   $attraction.toggle(attractionCheck);
 }
 
+<<<<<<< HEAD
 // Fetch hotels using Google Places API
 function fetchHotels(city, limit) {
+=======
+// fetch hotels using Google Places API
+function fetchHotels(city, maxResults) {  
+>>>>>>> 5bccbd38792a9505dcd346fa8091787693a81017
   var request = {
     query: 'hotels in ' + city,
     fields: ['name', 'formatted_address', 'rating', 'photos'],
+    maxResults: maxResults    
   };
 
   var service = new google.maps.places.PlacesService(document.createElement('div'));
