@@ -71,6 +71,8 @@ function searchAgain()
     fetchResults();
     //save again (this will make item at top of save list)
     save();
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("save_p").style.display = "block";
 }
 
 
@@ -179,10 +181,12 @@ function myHandler(e) {
 //side bar functions-----------------------------
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("save_p").style.display = "none"
 }
 
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("save_p").style.display = "block";
 }
 //end of sidebar
 
