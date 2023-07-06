@@ -84,6 +84,13 @@ footer {
     color: white;
 }
 
+#credit-wrapper
+{
+   text-align: center;
+   align-items: center;
+   
+}
+
 @-moz-document url-prefix() {
     #weather {
       width: 1345px;

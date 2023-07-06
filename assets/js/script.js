@@ -24,13 +24,14 @@ var saveList = [];
 var saveCity = function (cty) {
   this.city = cty;
 };
-
+var creditBool = false;
 $(function () {
   // Display the save list in the sidebar
   displaySaveList();
 
   //hide weather
   $('#weather').hide();
+  $('#canvas').hide();
   // Autocomplete for user search input
   var autocomplete = new google.maps.places.Autocomplete($input[0], { types: ['(cities)'] });
 
@@ -55,6 +56,7 @@ $(function () {
   // Store save on button click
   $save.on('click', save);
   $sidebar.on('click', '.save-item', searchAgain);
+  $('#video').on('click', showCredits);
 });
 
 function searchAgain() {
@@ -354,33 +356,47 @@ function formatDate(date) {
   return date.toLocaleDateString('en-US', options);
 }
 
-(function(){
-	let canvas = document.getElementById('canvas'),
-		context = canvas.getContext('2d'),
-		namesPosition = -50,
-		scrollUp = setInterval(function(){
-			namesPosition-= 1;
-			context.clearRect(0, 0, canvas.width, canvas.height);
-			context.beginPath();
-			context.fillStyle = '#888';
-			context.fillRect(0,0,canvas.width,canvas.height);
-			context.closePath();
-
-			context.beginPath();
-			context.shadowColor = '#000';
-			context.shadowBlur = 5;
-			context.shadowOffsetX = 3;
-			context.shadowOffsetY = 3;
-			context.font = "bold 20px arial";
-			context.fillStyle = '#fff';
-			context.fillText('Ibrahim Conteh',100,230+namesPosition);
-			context.fillText('Zach Lyons',100,260+namesPosition);
-			context.fillText('Camille MacLaren',100,290+namesPosition);
-			context.fillText('Oscar Mercado',100,320+namesPosition);
-			context.fillText('Daniel Williams',100,350+namesPosition);
-			context.closePath();
-			if(namesPosition <= -680){
-				clearInterval(scrollUp);
-			}
-		},62);
-})();
+function showCredits()
+{
+  if (creditBool)
+  {
+    $('#canvas').show();
+  (function(){
+    let canvas = document.getElementById('canvas'),
+      context = canvas.getContext('2d'),
+      namesPosition = -50,
+      scrollUp = setInterval(function(){
+        namesPosition-= 1;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+        context.fillStyle = '#888';
+        context.fillRect(0,0,canvas.width,canvas.height);
+        context.closePath();
+  
+        context.beginPath();
+        context.shadowColor = '#000';
+        context.shadowBlur = 5;
+        context.shadowOffsetX = 3;
+        context.shadowOffsetY = 3;
+        context.font = "bold 20px arial";
+        context.fillStyle = '#fff';
+        context.fillText('Ibrahim Conteh',100,230+namesPosition);
+        context.fillText('Zach Lyons',100,260+namesPosition);
+        context.fillText('Camille MacLaren',100,290+namesPosition);
+        context.fillText('Oscar Mercado',100,320+namesPosition);
+        context.fillText('Daniel Williams',100,350+namesPosition);
+        context.closePath();
+        if(namesPosition <= -680){
+          clearInterval(scrollUp);
+        }
+      },62);
+  })();
+  creditBool = false;
+  }
+  else
+  {
+    $('#canvas').hide();
+    creditBool = true;
+  }
+  
+}
