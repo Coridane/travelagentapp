@@ -64,6 +64,10 @@ main img {
     justify-content: center;
 }
 
+.weather-card {
+    width: 16.5vw;
+}
+
 footer {
     text-align: center;
 }
