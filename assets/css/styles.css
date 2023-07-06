@@ -7,10 +7,21 @@ header {
     text-align: center;
 }
 
+.title {
+    color: white;
+}
+
+
 header img {    
     height: 50%;
     width: 50%;
 }
+
+body {
+background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 11%, rgba(3,3,145,1) 100%, rgba(0,212,255,1) 100%);
+} 
+
 
 main {    
     text-align: center;
@@ -70,6 +81,7 @@ main img {
 
 footer {
     text-align: center;
+    color: white;
 }
 
 @-moz-document url-prefix() {
@@ -80,15 +92,14 @@ footer {
 
 #checkboxes
 {
-    text-align: center;    
-    
+    text-align: center;   
 }
 
 #checkboxes label
 {
     margin-right: 40px;
     font-size: 25px;
-    
+    color: white;
 }
 
 input.larger {
