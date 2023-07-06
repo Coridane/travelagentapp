@@ -363,6 +363,7 @@ function showCredits()
   if (!creditBool)
   {
     $('#canvas').show();
+    window.scrollTo(0, 5000);
   (function(){
     let canvas = document.getElementById('canvas'),
       context = canvas.getContext('2d'),
