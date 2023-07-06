@@ -168,6 +168,7 @@ function toggleCards()
     return false;
 }
 
+<<<<<<< HEAD
 function displaySaveList()
 {
     //this function updates the sidebar html
@@ -194,6 +195,8 @@ function displaySaveList()
     }
 }
 
+=======
+>>>>>>> 76fd3fbbcf4f613b3175959d9597f5233d98c221
 function toggleCards()
 {
     //displays card depinding on checkbox value
@@ -394,6 +397,6 @@ function formatDate(date) {
   return date.toLocaleDateString('en-US', options);
 }
 
-    //store save on button click
-    $save.on("click", save);
-    $sidebar.on("click",'.save-item', searchAgain);
+//store save on button click
+  $save.on("click", save);
+  $sidebar.on("click",'.save-item', searchAgain);
