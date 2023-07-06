@@ -1,0 +1,221 @@
+* {
+    font-family: 'Maven Pro', sans-serif;
+    color: black
+}
+
+header {
+    text-align: center;
+}
+
+.title {
+    color: white;
+}
+
+
+header img {    
+    height: 50%;
+    width: 50%;
+}
+
+body {
+background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 11%, rgba(3,3,145,1) 100%, rgba(0,212,255,1) 100%);
+} 
+
+
+main {    
+    text-align: center;
+    width: 100%;
+}
+
+form input {
+    height: 30px;
+    width: 600px;
+    font-size: 20px;
+    text-align: center;
+}
+
+form button {
+    height: 35px;
+    width: 80px;
+    padding-top: 5px;  
+    margin-top: 10px;  
+}
+
+main img {
+    height: 90px;
+    width: auto;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cards {
+    display: none;
+    background-color: #f5f5f5;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #f5f5f5;    
+    justify-content: center;    
+    padding-bottom: 40px;
+}
+
+#weather {
+    display: inline-flex;
+    height: 200px;
+    width: 100vw;
+    background-color: #f5f5f5;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: black;
+    justify-content: center;    
+}
+
+.weather-card {
+    width: 16.5vw;
+}
+
+footer {
+    text-align: center;
+    color: white;
+}
+
+#credit-wrapper
+{
+   text-align: center;
+   align-items: center;
+
+}
+
+@-moz-document url-prefix() {
+    #weather {
+      width: 1345px;
+    }
+  }
+
+#checkboxes
+{
+    text-align: center;   
+}
+
+#checkboxes label
+{
+    margin-right: 40px;
+    font-size: 25px;
+    color: white;
+}
+
+input.larger {
+    transform: scale(1.5);
+    margin: 40px;
+}
+
+#alert
+{
+    display: none;
+    color: whitesmoke;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#save_p{
+    position: fixed;
+    top: 0;
+    padding: 1px;
+    color: white;
+    border: 2px solid darkgray;
+    background-color: #26b42a; /* Green */
+    opacity: 70%;
+}
+
+#nav_bar{
+    display: none;
+}
+
+#save{
+    position: fixed;
+    right: 15px;
+    top: 0;
+    padding: 1px;
+    color: white;
+    border: 2px solid darkgray;
+    background-color: #26b42a; /* Green */
+    opacity: 70%;
+}
+
+.mini-card{
+    width: 33vw;
+
+}
+
+@media only screen and (max-width: 650px){
+    .wrapper{
+        flex-wrap: wrap;
+    }
+    .cards{
+        width: 100%;
+        margin-top: 50px;
+        border:0;
+    }
+    .mini-card{
+        margin-left: auto;
+        margin-right: auto;
+        border: solid black;
+        margin-top: 5px;
+        
+    }
+    #nav_bar{
+        position: fixed;
+        display: block;
+        width: 100%;
+        top: 0;
+        text-align: center;
+    }
+    #save_p{
+        margin-top: 40px;
+    }
+    #save{
+        margin-top: 40px;
+    }
+    .title{
+        margin-top: 50px;
+    }
+    input.larger {
+        margin: 20px;
+    }
+    #checkboxes label
+    {
+        margin-right: 15px;
+    }
+
+} 
+
+.btn
+{
+    background-color: #39753b; /* Green */
+    color: white;
+    transition-duration: 0.4s;
+    font-size: 24px;
+    height: 48px;
+    width: auto;
+}
+
+.btn:active {
+    background-color: #39753b; 
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.btn:hover{
+    background-color: yellow;
+    color:black;
+}
+
+#canvas{
+    height: 100px;
+    width: 400px;
+}

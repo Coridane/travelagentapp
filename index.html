@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveling Website</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Travel Agent App</title>
+
+</head>
+
+
+<body>
+
+    <div class="w3-bar w3-black" id="nav_bar">
+        <a href="#header" class="w3-bar-item w3-button">Search Bar</a>
+        <a href="#hotel" class="w3-bar-item w3-button">Hotels</a>
+        <a href="#restaurant" class="w3-bar-item w3-button">Restaurants</a>
+        <a href="#attraction" class="w3-bar-item w3-button">Attractions</a>
+        <a href="#weather" class="w3-bar-item w3-button">Weather</a>
+    </div>
+
+    <header id="header">
+        <div class="w3-sidebar w3-bar-block" style="display:none; opacity:75%;" id="mySidebar">
+            <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+        </div>
+    
+        <h1 class="title" >Welcome Traveler</h1>
+
+        <img src="./assets/img/travel_agent_logo_white.png" alt="black and white travel logo" />
+
+    </header>
+    
+    <div class="w3">
+            
+        <div class="w3-container">
+            <button id="save_p" class="w3-button w3-xlarge btn" onclick="w3_open()">Load City</button>
+        </div>
+        
+    </div>
+
+    <main>
+
+        <br><br>
+
+        <form id = "search">
+            <input type = "search" id="input" placeholder="Enter a city" class="form-label" style="width:100%;">
+            <label for = "input">
+                <button type = "submit" class ="btn">Search</button>
+            </label>
+        </form>
+
+        <div id = "checkboxes">
+            <input type="checkbox" class="check larger" id="hotelCheck" checked="checked"> <label for="hotelCheck">Hotels</label>
+            <input type="checkbox" class="check larger" id="restaurantCheck" checked="checked"> <label for="restaurantCheck">Restaurants</label>
+            <input type="checkbox" class="check larger" id="attractionCheck" checked="checked">  <label for="attractionCheck">Attractions</label> 
+        </div>    
+        <div id="alert">Please check a box</div>
+        <br><br>
+
+        <div class="wrapper">
+            <section id="hotel" class = "cards"><img src="./assets/img/hotels.png"></section>    
+            <section id="restaurant" class = "cards"><img src="./assets/img/restaurants.png"></section>    
+            <section id="attraction" class = "cards"><img src="./assets/img/attractions.png"></section>
+        </div>
+
+        <p>
+            <section id="weather"><img src="./assets/img/weather.png"></section>
+        </p>
+
+        <button type= "button" class="w3-button w3-xlarge btn" id ="save">Save City</button>
+        <!-- <section>
+            <h2>Contact</h2>
+            <p></p>
+        </section> -->
+
+    </main>
+
+    <footer>
+        Brought to you by
+        <br>
+        <video id="video" width="400" height="auto" autoplay muted>
+            <source src="./assets/img/GCPW.mp4" type="video/mp4">
+            <source src="./assets/img/GCPW.mp4" type="video/ogg">
+          Your browser does not support the video tag.
+        </video>
+        <br>        
+        Click on our logo to meet us!
+        <br><br>
+        <div id="credit-wrapper">
+            <canvas id="canvas" width="400" width="400"></canvas>
+        </div>        
+    </footer>
+    
+    
+    
+    <!-- jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX2tCr8NK-xMvsuHHaX6loXxUCZ8iKB7E&libraries=places"></script>
+    <script src="./assets/js/script.js"></script> 
+</body>
+
+</html>
