@@ -80,12 +80,20 @@ footer {
 
 #checkboxes
 {
-    text-align: center;
+    text-align: center;    
+    
 }
 
 #checkboxes label
 {
     margin-right: 40px;
+    font-size: 25px;
+    
+}
+
+input.larger {
+    transform: scale(1.5);
+    margin: 40px;
 }
 
 #alert
@@ -152,5 +160,8 @@ footer {
     }
     .title{
         margin-top: 50px;
+    }
+    input.larger {
+        margin: 20px;
     }
 } 
