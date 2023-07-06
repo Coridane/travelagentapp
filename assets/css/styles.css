@@ -60,8 +60,7 @@ main img {
     border-width: 1px;
     border-color: black;
     color: #f5f5f5;    
-    justify-content: center;
-    opacity: 80%;
+    justify-content: center;    
 }
 
 #weather {
@@ -73,8 +72,7 @@ main img {
     border-width: 1px;
     border-color: black;
     color: black;
-    justify-content: center;
-    opacity: 80%;
+    justify-content: center;    
 }
 
 .weather-card {
