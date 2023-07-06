@@ -17,8 +17,13 @@ The code follows the JavaScript Standard Style for maintaining a consistent codi
 
 ## Screenshots
 
-[Mock-up 1](https://github.com/Coridane/travelagentapp/blob/5ab2ca83531c7cbab14866a804a95ebdfc66b83b/assets/img/mock1.png)
-[Mock-up 2](https://github.com/Coridane/travelagentapp/blob/5ab2ca83531c7cbab14866a804a95ebdfc66b83b/assets/img/mock2.png)
+Mock of default page:
+
+![Mock-up 1](./assets/img/mock1.png)
+
+Mock of results page:
+
+![Mock-up 2](./assets/img/mock2.png)
 
 ## Tech/Framework Used
 
