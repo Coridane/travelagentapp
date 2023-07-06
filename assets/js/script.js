@@ -44,9 +44,6 @@ $(function () {
     event.preventDefault();
     // Get city name
     city = $input.val();
-    // Clear text area and give it a placeholder
-    $input.val('');
-    $input.attr('placeholder', 'Enter a city');
     // Call display cards
     toggleCards();
     // Display the API calls on HTML
@@ -257,9 +254,9 @@ function fetchWeather(city, unit) {
       $('#weather').empty();
       // Get forecast list
       var forecastList = response.list;
-      // Calculate daily average temperatures
+      // Calculate Temperatures
       var dailyAverages = calculateDailyAverages(forecastList);
-      // Loop through the daily average temperatures and create weather cards
+      // Loop through the Temperatures and create weather cards
       for (var i = 0; i < dailyAverages.length; i++) {
         var date = dailyAverages[i].date;
         var averageTemperature = dailyAverages[i].averageTemperature;
@@ -274,7 +271,7 @@ function fetchWeather(city, unit) {
   });
 }
 
-// Function to calculate daily average temperatures
+// Function to calculate Temperatures
 function calculateDailyAverages(forecastList) {
   var dailyAverages = [];
   var currentDate = null;
@@ -284,7 +281,7 @@ function calculateDailyAverages(forecastList) {
   for (var i = 0; i < forecastList.length; i++) {
     var forecast = forecastList[i];
     var forecastDate = new Date(forecast.dt_txt.split(' ')[0]);
-    // If it's a new date, calculate the daily average temperature
+    // If it's a new date, calculate the Temperature
     if (currentDate === null || currentDate.getTime() !== forecastDate.getTime()) {
       if (currentDate !== null) {
         var averageTemperature = calculateAverageTemperature(dailyTemperatures);
@@ -320,11 +317,11 @@ function createWeatherCard(date, temperature, iconCode, unit) {
   var formattedDate = formatDate(date);
   var temperatureText;
   if (unit === 'imperial') {
-    temperatureText = 'Daily Average Temperature: ' + Math.round(temperature) + ' °F'; // Display temperature in Fahrenheit
+    temperatureText = 'Temperature: ' + Math.round(temperature) + ' °F'; // Display temperature in Fahrenheit
   } else if (unit === 'metric') {
-    temperatureText = 'Daily Average Temperature: ' + Math.round(temperature) + ' °C'; // Display temperature in Celsius
+    temperatureText = 'Temperature: ' + Math.round(temperature) + ' °C'; // Display temperature in Celsius
   } else {
-    temperatureText = 'Daily Average Temperature: ' + Math.round(temperature) + ' K'; // Display temperature in Kelvin
+    temperatureText = 'Temperature: ' + Math.round(temperature) + ' K'; // Display temperature in Kelvin
   }
   var dateElement = $('<p>').text(formattedDate);
   var temperatureElement = $('<p>').text(temperatureText);
