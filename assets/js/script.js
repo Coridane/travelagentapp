@@ -369,7 +369,7 @@ function showCredits()
         namesPosition-= 1;
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.beginPath();
-        context.fillStyle = '#888';
+        context.fillStyle = '#000';
         context.fillRect(0,0,canvas.width,canvas.height);
         context.closePath();
   
