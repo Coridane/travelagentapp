@@ -336,11 +336,11 @@ function createWeatherCard(date, temperature, iconCode, unit) {
   var formattedDate = formatDate(date);
   var temperatureText;
   if (unit === 'imperial') {
-    temperatureText = 'Temperature: ' + Math.round(temperature) + ' °F'; // Display temperature in Fahrenheit
+    temperatureText = 'Temp: ' + Math.round(temperature) + ' °F'; // Display temperature in Fahrenheit
   } else if (unit === 'metric') {
-    temperatureText = 'Temperature: ' + Math.round(temperature) + ' °C'; // Display temperature in Celsius
+    temperatureText = 'Temp: ' + Math.round(temperature) + ' °C'; // Display temperature in Celsius
   } else {
-    temperatureText = 'Temperature: ' + Math.round(temperature) + ' K'; // Display temperature in Kelvin
+    temperatureText = 'Temp: ' + Math.round(temperature) + ' K'; // Display temperature in Kelvin
   }
   var dateElement = $('<p>').text(formattedDate);
   var temperatureElement = $('<p>').text(temperatureText);

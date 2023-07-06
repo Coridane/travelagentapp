@@ -126,6 +126,7 @@ input.larger {
     position: fixed;
     top: 0;
     padding: 1px;
+    color: white;
     border: 2px solid darkgray;
     background-color: #26b42a; /* Green */
     opacity: 70%;
@@ -140,6 +141,7 @@ input.larger {
     right: 15px;
     top: 0;
     padding: 1px;
+    color: white;
     border: 2px solid darkgray;
     background-color: #26b42a; /* Green */
     opacity: 70%;
@@ -185,12 +187,21 @@ input.larger {
     input.larger {
         margin: 20px;
     }
+    #checkboxes label
+    {
+        margin-right: 15px;
+    }
+
 } 
 
 .btn
 {
     background-color: #39753b; /* Green */
+    color: white;
     transition-duration: 0.4s;
+    font-size: 24px;
+    height: 48px;
+    width: auto;
 }
 
 .btn:active {
