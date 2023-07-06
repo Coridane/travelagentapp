@@ -62,6 +62,7 @@ $(function () {
 function searchAgain() {
   // Get the city that was pressed
   city = $(this).text();
+  $('#input').val(city);
   // Display depending on checkboxes
   toggleCards();
   // Show the results from API fetch
@@ -284,6 +285,7 @@ function fetchWeather(city, unit) {
     },
     error: function (error) {
       console.log(error);
+      $('#weather').text('Unable to find city weather');
     }
   });
 }
