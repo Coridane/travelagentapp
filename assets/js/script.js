@@ -64,6 +64,8 @@ function searchAgain() {
   fetchResults();
   // Save again (this will make the item at the top of the save list)
   save();
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("save_p").style.display = "block";
 }
 
 
@@ -166,10 +168,12 @@ function myHandler(e) {
 // Side bar functions
 function w3_open() {
   document.getElementById('mySidebar').style.display = 'block';
+  document.getElementById("save_p").style.display = "none";
 }
 
 function w3_close() {
   document.getElementById('mySidebar').style.display = 'none';
+  document.getElementById("save_p").style.display = "block";
 }
 
 // API stuff -------------------------------------------------------------------------------------------
