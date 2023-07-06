@@ -153,57 +153,6 @@ function toggleCards() {
   }
 }
 
-function toggleCards() 
-{
-    //checks if there is a repeat and send the index at repeat
-    var ind;
-    for(var i = 0; i < saveList.length; i++)
-    {
-        if(saveList[i].city == city)
-        {
-            ind = i;
-            return ind;
-        }         
-    }
-    return false;
-}
-
-<<<<<<< HEAD
-function displaySaveList()
-{
-    //this function updates the sidebar html
-    var $btn = $('<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>');
-    //remove everything in side bar
-    $sidebar.children().remove();
-    //add the close the button
-    $sidebar.append($btn);
-    var saveList = [];
-    //if the save list isn't empty
-    if (localStorage.getItem('saveList') !== null) 
-    {
-        //get saved listinfo
-        saveList = JSON.parse(localStorage.getItem("saveList"));
-        //loop until all the list is displayed as buttons
-        //is in descending order so the latest item is on top
-        for(i = saveList.length; i-- ; i > 0)
-        {
-            var city = saveList[i].city;
-            var $a= $('<a href="#" class="save-item w3-bar-item w3-button">' + city + '</a>');
-            //add to list
-            $sidebar.append($a);
-        } 
-    }
-}
-
-=======
->>>>>>> 76fd3fbbcf4f613b3175959d9597f5233d98c221
-function toggleCards()
-{
-    //displays card depinding on checkbox value
-    $hotel.toggle(hotelCheck);
-    $restaurant.toggle(restaurantCheck);    
-    $attraction.toggle(attractionCheck);
-}
 
 // Loop for team logo video
 document.getElementById('video').addEventListener('ended', myHandler, false);
