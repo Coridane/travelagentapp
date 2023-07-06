@@ -38,7 +38,8 @@ form input {
 form button {
     height: 35px;
     width: 80px;
-    padding-top: 5px;    
+    padding-top: 5px;  
+    margin-top: 10px;  
 }
 
 main img {
@@ -52,9 +53,8 @@ main img {
 }
 
 .cards {
-    display: inline;    
-    /* height: 600px;
-    width: 300px; */
+
+    display: none;
     background-color: #f5f5f5;
     border-style: solid;
     border-width: 1px;
@@ -117,7 +117,7 @@ input.larger {
     top: 0;
     padding: 1px;
     border: 2px solid darkgray;
-    background-color:#E5E5E5;
+    background-color: #26b42a; /* Green */
     opacity: 70%;
 }
 
@@ -131,7 +131,7 @@ input.larger {
     top: 0;
     padding: 1px;
     border: 2px solid darkgray;
-    background-color:#E5E5E5;
+    background-color: #26b42a; /* Green */
     opacity: 70%;
 }
 
@@ -176,3 +176,24 @@ input.larger {
         margin: 20px;
     }
 } 
+
+.btn
+{
+    background-color: #39753b; /* Green */
+    transition-duration: 0.4s;
+}
+
+.btn:active {
+    background-color: #39753b; 
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.btn:hover{
+    background-color: yellow;
+    color:black;
+}
+
+#canvas{
+    height: 78px;
+}
