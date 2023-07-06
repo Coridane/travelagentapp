@@ -61,7 +61,7 @@ main img {
     border-color: black;
     color: #f5f5f5;    
     justify-content: center;
-    opacity: 90%;
+    opacity: 80%;
 }
 
 #weather {
@@ -74,7 +74,7 @@ main img {
     border-color: black;
     color: black;
     justify-content: center;
-    opacity: 90%;
+    opacity: 80%;
 }
 
 .weather-card {
