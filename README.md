@@ -8,7 +8,8 @@ The Travel Planner project was created to provide users with a convenient way to
 
 ## Build Status
 
-[Github URL](https://github.com/Coridane/travelagentapp)  [Deployed Application](https://coridane.github.io/travelagentapp/)
+[Github URL](https://github.com/Coridane/travelagentapp)  
+[Deployed Application](https://coridane.github.io/travelagentapp/)
 
 ## Code Style
 
@@ -16,7 +17,8 @@ The code follows the JavaScript Standard Style for maintaining a consistent codi
 
 ## Screenshots
 
-[Mock-up 1](https://github.com/Coridane/travelagentapp/blob/5ab2ca83531c7cbab14866a804a95ebdfc66b83b/assets/img/mock1.png) [Mock-up 2](https://github.com/Coridane/travelagentapp/blob/5ab2ca83531c7cbab14866a804a95ebdfc66b83b/assets/img/mock2.png)
+[Mock-up 1](https://github.com/Coridane/travelagentapp/blob/5ab2ca83531c7cbab14866a804a95ebdfc66b83b/assets/img/mock1.png)
+[Mock-up 2](https://github.com/Coridane/travelagentapp/blob/5ab2ca83531c7cbab14866a804a95ebdfc66b83b/assets/img/mock2.png)
 
 ## Tech/Framework Used
 
