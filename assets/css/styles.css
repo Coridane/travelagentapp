@@ -102,9 +102,13 @@ footer {
     opacity: 70%;
 }
 
+#nav_bar{
+    display: none;
+}
+
 #save{
     position: fixed;
-    right: 10px;
+    right: 15px;
     top: 0;
     padding: 1px;
     border: 2px solid darkgray;
@@ -124,11 +128,29 @@ footer {
     .cards{
         width: 100%;
         margin-top: 50px;
-        border: 0;
+        border:0;
     }
     .mini-card{
         margin-left: auto;
         margin-right: auto;
+        border: solid black;
+        margin-top: 5px;
         
+    }
+    #nav_bar{
+        position: fixed;
+        display: block;
+        width: 100%;
+        top: 0;
+        text-align: center;
+    }
+    #save_p{
+        margin-top: 40px;
+    }
+    #save{
+        margin-top: 40px;
+    }
+    .title{
+        margin-top: 50px;
     }
 } 
