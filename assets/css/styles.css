@@ -88,7 +88,7 @@ footer {
 {
    text-align: center;
    align-items: center;
-   
+
 }
 
 @-moz-document url-prefix() {
@@ -202,5 +202,6 @@ input.larger {
 }
 
 #canvas{
-    height: 78px;
+    height: 100px;
+    width: 400px;
 }

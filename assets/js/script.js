@@ -358,7 +358,7 @@ function formatDate(date) {
 
 function showCredits()
 {
-  if (creditBool)
+  if (!creditBool)
   {
     $('#canvas').show();
   (function(){
@@ -391,12 +391,12 @@ function showCredits()
         }
       },62);
   })();
-  creditBool = false;
+  creditBool = true;
   }
   else
   {
     $('#canvas').hide();
-    creditBool = true;
+    creditBool = false;
   }
   
 }
