@@ -48,3 +48,8 @@ Mock of results page:
  -https://www.w3schools.com/w3css/default.asp
  -https://openweathermap.org/
  -https://developers.google.com/maps/documentation/places/web-service/overview
+
+## Links
+
+Repo: https://github.com/Coridane/travelagentapp
+Website: https://coridane.github.io/travelagentapp
