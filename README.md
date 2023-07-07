@@ -32,6 +32,8 @@ Mock of results page:
 - JavaScript
 - Google Places API
 - OpenWeatherMap API
+- w3CSS framework
+- Jquery
 
 ## Features
 
